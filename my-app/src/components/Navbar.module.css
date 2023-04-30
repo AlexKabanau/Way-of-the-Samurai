@@ -1,0 +1,42 @@
+.nav {
+  grid-area: nav;
+  background-color: #F7F3EC;
+  /* position: relative; */
+  padding: 10px;
+}
+
+.nav a {
+  cursor: pointer;
+  padding-left: 35px;
+  position: relative;;
+}
+
+.link::before {
+  content: "";
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  left: 0;
+  top: 0;
+  background: 0 0 no-repeat;
+}
+
+.profile_link::before {
+  background-image: url("./../person_FILL0_wght400_GRAD0_opsz48.svg");
+}
+
+.messages_link::before {
+  background-image: url("./../chat_FILL0_wght400_GRAD0_opsz48.svg");
+}
+
+.news_link::before {
+  background-image: url("./../feed_FILL0_wght400_GRAD0_opsz48.svg");
+}
+
+.music_link::before {
+  background-image: url("./../library_music_FILL0_wght400_GRAD0_opsz48.svg");
+}
+
+.setting_link::before {
+  background-image: url("./../settings_FILL0_wght400_GRAD0_opsz48.svg");
+}
