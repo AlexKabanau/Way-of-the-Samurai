@@ -22,21 +22,21 @@
 }
 
 .profile_link::before {
-  background-image: url("./../person_FILL0_wght400_GRAD0_opsz48.svg");
+  background-image: url("./../../person_FILL0_wght400_GRAD0_opsz48.svg");
 }
 
 .messages_link::before {
-  background-image: url("./../chat_FILL0_wght400_GRAD0_opsz48.svg");
+  background-image: url("./../../chat_FILL0_wght400_GRAD0_opsz48.svg");
 }
 
 .news_link::before {
-  background-image: url("./../feed_FILL0_wght400_GRAD0_opsz48.svg");
+  background-image: url("./../../feed_FILL0_wght400_GRAD0_opsz48.svg");
 }
 
 .music_link::before {
-  background-image: url("./../library_music_FILL0_wght400_GRAD0_opsz48.svg");
+  background-image: url("./../../library_music_FILL0_wght400_GRAD0_opsz48.svg");
 }
 
 .setting_link::before {
-  background-image: url("./../settings_FILL0_wght400_GRAD0_opsz48.svg");
+  background-image: url("./../../settings_FILL0_wght400_GRAD0_opsz48.svg");
 }
