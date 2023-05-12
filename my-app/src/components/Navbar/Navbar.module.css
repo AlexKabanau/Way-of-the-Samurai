@@ -40,3 +40,7 @@
 .setting_link::before {
   background-image: url("./../../settings_FILL0_wght400_GRAD0_opsz48.svg");
 }
+
+.link.active {
+  color: gold;
+}
