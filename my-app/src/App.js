@@ -19,17 +19,13 @@ function App() {
         <div className='app-wrapper-content'>
         <Routes>
           <Route path="/" element={<Profile />}/>
-          <Route path="/dialogs" element={<Dialogs />}/>
+          <Route path="/dialogs/*" element={<Dialogs />}/>
           <Route path="/profile" element={<Profile />}/>
           <Route path="/news" element={<News />}/>
           <Route path="/music" element={<Music />}/>
           <Route path="/settings" element={<Settings />}/>
         </Routes>
 
-          {/* <Route path="/dialogs" Component={Dialogs} />
-          <Route path="/profile" Component={Profile} /> */}
-          {/* <Dialogs /> */}
-          {/* <Profile /> */}
 
         </div>
         <footer></footer>
