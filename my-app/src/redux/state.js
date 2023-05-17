@@ -16,12 +16,12 @@ let state = {
       { id: 6, name: "Vlad" },
     ],
     messagesData: [
-      { id: 1, message: "Hi" },
-      { id: 2, message: "How are you" },
-      { id: 3, message: "How are you123" },
-      { id: 4, message: "What's up" },
-      { id: 5, message: "What's up bro" },
-      { id: 6, message: "YO" },
+      { id: 1, message: "Hi", author: "Michael John", location: "Local Austria", date: "Today" },
+      { id: 2, message: "How are you", author: "Fredericka Michelin", location: "Local Austria", date: "Yesterday" },
+      { id: 3, message: "How are you123", author: "Mila Riksha", location: "Local Austria", date: "Yesterday" },
+      { id: 4, message: "What's up", author: "Oskar Samborsky", location: "Local Austria", date: "Yesterday" },
+      { id: 5, message: "What's up bro", author: "Michael John", location: "Local Austria", date: "Today" },
+      { id: 6, message: "YO", author: "Michael John", location: "Local Austria", date: "Yesterday" },
     ],
   },
 
