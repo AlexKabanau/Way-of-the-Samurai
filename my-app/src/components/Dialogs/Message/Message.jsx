@@ -2,14 +2,14 @@ import React from "react"
 import s from "./../Dialogs.module.css";
 
 const Message = (props) => {
-  debugger
+  let messageSide = props.author === "Me" ? s.myMessage : s.notMyMessage;
   return (
-    <div className={s.message}>
+    <div className={`${s.message} ${messageSide}`}>
 
       <div className={s.feedbackWrapper}>
         <div className={s.feedbackCard}>
           <div className={s.feedbackHeader}>
-            <img className={s.authorImage} src="../../assets/icons/icon-user.svg" alt="Michael John"/>
+            <img className={s.authorImage} src="https://img.championat.com/s/735x490/news/big/y/g/avatar-2-sobral-v-rossii-bolshe-2-4-mlrd-rublej_16758793371084217002.jpg" alt="Michael John"/>
               <div className={s.about}>
                 <p className={s.authorName}>{props.author}</p>
                 <div className={s.locationNDate}>

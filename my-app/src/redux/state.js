@@ -8,10 +8,10 @@ let state = {
   },
   messagesPage: {
     dialogsData: [
-      { id: 1, name: "Alex" },
-      { id: 2, name: "Dima" },
-      { id: 3, name: "Artiom" },
-      { id: 4, name: "Vadzim" },
+      { id: 1, name: "Michael John" },
+      { id: 2, name: "Fredericka Michelin" },
+      { id: 3, name: "Mila Riksha" },
+      { id: 4, name: "Oskar Samborsky" },
       { id: 5, name: "Dima" },
       { id: 6, name: "Vlad" },
     ],
@@ -21,7 +21,7 @@ let state = {
       { id: 3, message: "How are you123", author: "Mila Riksha", location: "Local Austria", date: "Yesterday" },
       { id: 4, message: "What's up", author: "Oskar Samborsky", location: "Local Austria", date: "Yesterday" },
       { id: 5, message: "What's up bro", author: "Michael John", location: "Local Austria", date: "Today" },
-      { id: 6, message: "YO", author: "Michael John", location: "Local Austria", date: "Yesterday" },
+      { id: 6, message: "YO", author: "Me", location: "Local Austria", date: "Yesterday" },
     ],
   },
 

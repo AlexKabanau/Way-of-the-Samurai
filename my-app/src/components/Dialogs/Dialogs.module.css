@@ -24,6 +24,12 @@
   border-radius: 20px;
   /* display: none; */
 }
+.myMessage {
+  align-self: end;
+}
+.notMyMessage {
+  align-self: start;
+}
 .feedbackCard {
   /* height: 356px; */
   overflow: hidden;
@@ -64,7 +70,12 @@
   margin: 0;
   padding: 0;
 }
-.feedbackHeader .locationNDate {
+.feedbackHeader {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 10px;
+}
+.locationNDate {
   display: flex;
 }
 p.location {
@@ -85,7 +96,13 @@ p.datetime {
   right: -11px;
   color: #BDBDBD;
 }
+.authorImage {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
 .feedbackText {
   color: #767474;
   margin-top: 8px;
+  margin-bottom: 0;
 }
