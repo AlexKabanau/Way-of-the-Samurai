@@ -6,9 +6,9 @@ const Message = (props) => {
   return (
     <div className={`${s.message} ${messageSide}`}>
 
-      <div className={s.feedbackWrapper}>
-        <div className={s.feedbackCard}>
-          <div className={s.feedbackHeader}>
+      <div className={s.messageWrapper}>
+        <div className={s.messageCard}>
+          <div className={s.messageHeader}>
             <img className={s.authorImage} src="https://img.championat.com/s/735x490/news/big/y/g/avatar-2-sobral-v-rossii-bolshe-2-4-mlrd-rublej_16758793371084217002.jpg" alt="Michael John"/>
               <div className={s.about}>
                 <p className={s.authorName}>{props.author}</p>
@@ -18,7 +18,7 @@ const Message = (props) => {
                 </div>
               </div>
           </div>
-          <p className={`${s.feedbackText} ${s.smallParagraph}`}>{props.message}</p>
+          <p className={`${s.messageText} ${s.smallParagraph}`}>{props.message}</p>
         </div>
       </div>
 
