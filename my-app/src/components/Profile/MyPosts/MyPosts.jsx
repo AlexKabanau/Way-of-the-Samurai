@@ -6,13 +6,13 @@ const MyPosts = (props) => {
 
 
   let postsElements = props.posts
-  .map( post => <Post name={post.name} id={post.id} age={post.age} likeCount={post.likesCount}/> );
+  .map( post => <Post name={post.name} message={post.message} id={post.id} age={post.age} likeCount={post.likesCount}/> );
 
   let newPostElement = React.createRef();
   let addPost = () => {
 
     let text = newPostElement.current.value;
-    alert(text)
+    props.addPost(text);
   }
 
   return (
