@@ -33,22 +33,6 @@ const profileReducer = (state = initialState, action) => {
       return state
 
   }
-  // if (action.type === ADD_POST) {
-  //   let newPost = {
-  //     id: 4,
-  //     message: state.newPostText,
-  //     name: "AlexK",
-  //     age: 34,
-  //     likesCount: 0
-  //   };
-
-  //   state.posts.push(newPost);
-  //   state.newPostText = '';
-  // } else if (action.type === UPDATE_NEW_POST_TEXT) {
-  //   state.newPostText = action.newText;
-  // }
-
-  
 }
 
 export const addPostActionCreator = () => {
