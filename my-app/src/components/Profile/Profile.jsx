@@ -9,7 +9,7 @@ const Profile = (props) => {
     <main>
       <ProfileInfo />
       <MyPostsContainer
-        store={props.store}
+        // store={props.store}
       />
     </main>
   )
