@@ -4,7 +4,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 const Dialogs = (props) => {
-  debugger
+  // debugger
 
   let state = props.dialogsPage;
 
@@ -24,7 +24,6 @@ const Dialogs = (props) => {
 
   let onNewMessageChange = (e) => {
     let body = e.target.value;
-    // let body = newMessageElement.current.value;
     props.updateNewMessageBody(body);
   }
 
