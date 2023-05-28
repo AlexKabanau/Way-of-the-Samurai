@@ -41,6 +41,10 @@
   background-image: url("./../../settings_FILL0_wght400_GRAD0_opsz48.svg");
 }
 
+.users_link::before {
+  background-image: url("./../../users-svgrepo-com.svg");
+}
+
 .link.active {
   color: gold;
 }
