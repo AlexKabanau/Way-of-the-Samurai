@@ -4,9 +4,9 @@ const SET_USERS = 'SET USERS';
 
 let initialState = {
   users: [
-    {id: 1, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Dmitry', status: 'I am a boss', location: {city: 'Minsk', counry: 'Belarus'}, followed: false, },
-    {id: 2, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Alesha', status: 'I am a boss too', location: {city: 'Moscow', counry: 'Russia'}, followed: true, },
-    {id: 3, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Alex', status: 'I am a boss too too', location: {city: 'Kiev', counry: 'Ukrainw'}, followed: false, },
+    // {id: 1, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Dmitry', status: 'I am a boss', location: {city: 'Minsk', counry: 'Belarus'}, followed: false, },
+    // {id: 2, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Alesha', status: 'I am a boss too', location: {city: 'Moscow', counry: 'Russia'}, followed: true, },
+    // {id: 3, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Alex', status: 'I am a boss too too', location: {city: 'Kiev', counry: 'Ukrainw'}, followed: false, },
   ],
 }
 
