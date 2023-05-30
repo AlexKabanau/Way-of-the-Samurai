@@ -4,27 +4,30 @@ import axios from "axios";
 import userPhoto from "../../assets/images/userphoto.png"
 
 const Users = (props) => {
-  debugger
+  
 
-
-
-  if (props.users.length === 0) {
-    debugger
-
-    axios.get("https://social-network.samuraijs.com/api/1.0/users")
-      .then(response => {
-        props.setUsers(response.data.items)
-      })
-    // props.setUsers([
-    //   {id: 1, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Dmitry', status: 'I am a boss', location: {city: 'Minsk', counry: 'Belarus'}, followed: false, },
-    //   {id: 2, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Alesha', status: 'I am a boss too', location: {city: 'Moscow', counry: 'Russia'}, followed: true, },
-    //   {id: 3, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Alex', status: 'I am a boss too too', location: {city: 'Kiev', counry: 'Ukrainw'}, followed: false, },
-    // ]);
-
+  let getUsers = () => {
+    if (props.users.length === 0) {
+    
+      axios.get("https://social-network.samuraijs.com/api/1.0/users")
+        .then(response => {
+          props.setUsers(response.data.items)
+        })
+      // props.setUsers([
+      //   {id: 1, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Dmitry', status: 'I am a boss', location: {city: 'Minsk', counry: 'Belarus'}, followed: false, },
+      //   {id: 2, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Alesha', status: 'I am a boss too', location: {city: 'Moscow', counry: 'Russia'}, followed: true, },
+      //   {id: 3, photoUrl: 'https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png', fullName: 'Alex', status: 'I am a boss too too', location: {city: 'Kiev', counry: 'Ukrainw'}, followed: false, },
+      // ]);
+  
+    }
   }
+
+
+
 
   return (
     <div>
+      <button onClick={getUsers}>Get Users</button>
       {props.users.map(user =>
         <div key={user.id}>
           <span>
