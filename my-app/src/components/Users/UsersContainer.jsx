@@ -6,16 +6,22 @@ import { connect } from "react-redux";
 import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, toggleIsFetchingAC } from "../../redux/users-reducer";
 import axios from "axios";
 import Users from "./Users";
-import preloader from "../../assets/images/Spinner-1s-200px.svg"
+import Preloader from "../Common/Preloader/Preloader";
 
 
 class UsersContainer extends React.Component {
 
   componentDidMount() {
+    debugger
+    console.log(this.props)
     this.props.toggleIsFetching(true);
+    console.log(this.props.isFetching); // true
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
       .then(response => {
-        this.props.toggleIsFetching(true);
+        debugger
+        console.log(this.props)
+        this.props.toggleIsFetching(false);
+        console.log(this.props.isFetching); // undef
         this.props.setUsers(response.data.items);
         this.props.setTotalUsersCount(response.data.totalCount);
 
@@ -25,22 +31,23 @@ class UsersContainer extends React.Component {
   onPageChanged = (pageNumber) => {
     this.props.setCurrentPage(pageNumber);
     this.props.toggleIsFetching(true);
+    console.log(this.props.isFetching); // true
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
       .then(response => {
-        this.props.toggleIsFetching(true);
+        this.props.toggleIsFetching(false);
+        console.log(this.props.isFetching); // undef
         this.props.setUsers(response.data.items);
       })
   }
 
   render() {
+    // debugger
     return <>
 
-      <img src={preloader} />
-      {/* {this.props.isFetching ? <div style={ {backgroundColor: 'yellow'} }>
-        <img src={preloader} />
-      </div> : null} */}
-
-      <Users
+      {/* { console.log(this.props.isFetching) } */}
+      {/* <img src={preloader} /> */}
+      
+      {this.props.isFetching ? <Preloader /> : <Users
         totalUsersCount={this.props.totalUsersCount}
         pageSize={this.props.pageSize}
         currentPage={this.props.currentPage}
@@ -48,7 +55,9 @@ class UsersContainer extends React.Component {
         follow={this.props.follow}
         unfollow={this.props.unfollow}
         users={this.props.users}
-      />
+      />}
+
+      
     </>
   }
 }

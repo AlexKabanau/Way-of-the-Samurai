@@ -14,7 +14,7 @@ let initialState = {
 }
 
 const usersReducer = (state = initialState, action) => {
-  
+  // debugger
   switch (action.type) {
     case FOLLOW: {
       return {
@@ -48,7 +48,7 @@ const usersReducer = (state = initialState, action) => {
       return {...state, totalUsersCount: action.count}
     }
     case TOGGLE_IS_FETCHING: {
-      return {...state, isFetching: action.iFetching}
+      return {...state, isFetching: action.isFetching}
     }
     default:
       return state
@@ -89,7 +89,7 @@ export const setTotalUsersCountAC = (totalUsersCount) => {
 export const toggleIsFetchingAC = (isFetching) => {
   return {
     type: TOGGLE_IS_FETCHING,
-    isFetching: isFetching,
+    isFetching
   }
 }
 
