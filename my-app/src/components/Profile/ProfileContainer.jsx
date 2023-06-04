@@ -1,20 +1,16 @@
 import React from "react";
-// import s from "./Profile.module.css"
 import { setUserProfile } from "../../redux/profile-reducer";
 import Profile from "./Profile";
 import axios from "axios";
 import { connect } from "react-redux";
-
-// import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
-// import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import { withRouter } from "react-router-dom"
 
 class ProfileContainer extends React.Component {
   
   componentDidMount() {
+    debugger
     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
       .then(response => {
-        // this.props.toggleIsFetching(false);
-        // console.log(this.props.isFetching); // undef
         debugger
         this.props.setUserProfile(response.data);
       })
@@ -37,6 +33,8 @@ let mapStateToProps =(state) => {
     profile: state.profilePage.profile
   }
 }
+
+let withURLDataContainerComponent = withRouter(ProfileContainer)
 
 export default connect(mapStateToProps, {
   setUserProfile
