@@ -29,6 +29,10 @@ function App(props) {
             <DialogsContainer 
               // store={props.store}
             /> }/>
+          <Route path="/profile/" element={ 
+            <ProfileContainer 
+            // store={props.store}
+            /> }/>
           <Route path="/profile/:userId" element={ 
             <ProfileContainer 
             // store={props.store}
