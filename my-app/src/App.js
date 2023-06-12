@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 // import Profile from './components/Profile/Profile';
 import UsersContainer from './components/Users/UsersContainer';
@@ -17,26 +18,18 @@ function App(props) {
   return (
     // <BrowserRouter>
       <div className='app-wrapper'>
-        <Header />
+        <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
         <Routes>
           <Route path="/" element={ 
-            <ProfileContainer 
-              // store={props.store}
-            /> }/>
+            <ProfileContainer /> }/>
           <Route path="/dialogs/*" element={ 
-            <DialogsContainer 
-              // store={props.store}
-            /> }/>
+            <DialogsContainer /> }/>
           <Route path="/profile/" element={ 
-            <ProfileContainer 
-            // store={props.store}
-            /> }/>
+            <ProfileContainer /> }/>
           <Route path="/profile/:userId" element={ 
-            <ProfileContainer 
-            // store={props.store}
-            /> }/>
+            <ProfileContainer /> }/>
           <Route path="/news" element={ 
             <News /> }/>
           <Route path="/music" element={ 
