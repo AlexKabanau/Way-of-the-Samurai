@@ -10,17 +10,8 @@ import { authAPI } from "../API/api";
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-    // console.log(this.props)
     this.props.getAuthUserData()
-    // authAPI.authMe()
-    //   .then(data => {
-    //     if (data.resultCode === 0) {
-    //       // debugger
-    //       // console.log(this.props)
-    //       let {id, login, email} = data.data;
-    //       this.props.setAuthUserDataAC(id, email, login)
-    //     }
-    //   })
+
   }
 
 
