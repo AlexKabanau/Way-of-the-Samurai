@@ -12,6 +12,7 @@ import Settings from './components/Settings/Setting';
 import { Routes, Route,  } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import Login from './components/Login/Login';
 
 function App(props) {
 
@@ -38,6 +39,8 @@ function App(props) {
             <Settings /> }/>
           <Route path="/users" element={ 
             <UsersContainer /> }/>
+          <Route path="/login" element={ 
+            <Login /> }/>
         </Routes>
 
 
