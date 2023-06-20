@@ -37,5 +37,5 @@ export default compose(
   connect(mapStateToProps, {
     setUserProfile
   }),
-  withAuthRedirect
+  // withAuthRedirect
 )(ProfileContainer);
