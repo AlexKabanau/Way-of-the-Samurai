@@ -3,8 +3,11 @@ import s from "./ProfileInfo.module.css"
 import Preloader from "../../../Common/Preloader/Preloader";
 
 class ProfileStatus extends React.Component {
+  statusInputRef = React.createRef();
+  
   state = {
     editMode: false,
+    // status: this.props.status
   }
   activateEditMode = () => {
     this.setState(
@@ -12,7 +15,6 @@ class ProfileStatus extends React.Component {
         editMode: true
       }
     )
-    this.state = true;
   }
   deactivateEditMode = () => {
     this.setState(
@@ -20,7 +22,7 @@ class ProfileStatus extends React.Component {
         editMode: false
       }
     )
-    this.state = false;
+    this.props.updateStatus(this.statusInputRef.current.value);
   }
   render() {
     return (
@@ -33,6 +35,7 @@ class ProfileStatus extends React.Component {
         {this.state.editMode &&
           <div>
             <input 
+              ref={this.statusInputRef}
               value={this.props.status}
               onBlur={this.deactivateEditMode}
               autoFocus="true"></input>

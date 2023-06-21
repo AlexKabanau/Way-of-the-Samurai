@@ -14,13 +14,21 @@ export const usersAPI = {
     return instance.get(`users?page=${currentPage}&count=${pageSize}`)
       .then(response => response.data)
   },
-  unfollowUser(id) {
-    return instance.delete(`follow/${id}`)
+  unfollowUser(userId) {
+    return instance.delete(`follow/${userId}`)
     .then(response => response.data)
   },
-  followUser(id) {
-    return instance.post(`follow/${id}`)
+  followUser(userId) {
+    return instance.post(`follow/${userId}`)
     .then(response => response.data)
+  },
+}
+export const profileAPI = {
+  getStatus(userId) {
+    return instance.get(`profile/status/${userId}`)
+  },
+  updateStatus(status) {
+    return instance.put(`profile/status`, { status: status })
   },
 }
 

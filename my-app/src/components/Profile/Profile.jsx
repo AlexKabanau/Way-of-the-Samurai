@@ -27,6 +27,8 @@ const Profile = (props) => {
     <main>
       <ProfileInfo 
         profile={profile}
+        status={props.status}
+        updateStatus={props.updateStatus}
       />
       <MyPostsContainer
         // store={props.store}
