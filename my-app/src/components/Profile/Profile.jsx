@@ -10,23 +10,23 @@ import { setUserProfile } from "../../redux/profile-reducer";
 const Profile = (props) => {
   // console.log(useParams())
 
-  let {userId} = useParams();
-  if (!userId) {
-    userId = 2;
-  }
-  const [profile, setUserProfile] = useState(null);
+  // let {userId} = useParams();
+  // if (!userId) {
+  //   userId = 2;
+  // }
+  // const [profile, setUserProfile] = useState(null);
 
-  useEffect( () => {
-    fetch('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
-    .then(response => response.json())
-    .then(data => setUserProfile(data))
-  }, [userId]);
+  // useEffect( () => {
+  //   fetch('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
+  //   .then(response => response.json())
+  //   .then(data => setUserProfile(data))
+  // }, [userId]);
 
 
   return (
     <main>
       <ProfileInfo 
-        profile={profile}
+        profile={props.profile}
         status={props.status}
         updateStatus={props.updateStatus}
       />

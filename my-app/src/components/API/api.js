@@ -22,8 +22,15 @@ export const usersAPI = {
     return instance.post(`follow/${userId}`)
     .then(response => response.data)
   },
+  getProfile(userId) {
+    console.warn('Obsolute method. Please use profileAPI object.')
+    return profileAPI.getProfile(userId)
+  }
 }
 export const profileAPI = {
+  getProfile(userId) {
+    return instance.get(`profile/` + userId);
+  },
   getStatus(userId) {
     return instance.get(`profile/status/${userId}`)
   },

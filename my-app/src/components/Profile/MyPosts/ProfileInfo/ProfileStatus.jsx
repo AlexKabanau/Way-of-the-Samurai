@@ -3,11 +3,11 @@ import s from "./ProfileInfo.module.css"
 import Preloader from "../../../Common/Preloader/Preloader";
 
 class ProfileStatus extends React.Component {
-  statusInputRef = React.createRef();
+  // statusInputRef = React.createRef();
   
   state = {
     editMode: false,
-    // status: this.props.status
+    status: this.props.status
   }
   activateEditMode = () => {
     this.setState(
@@ -17,28 +17,41 @@ class ProfileStatus extends React.Component {
     )
   }
   deactivateEditMode = () => {
+    debugger
     this.setState(
       {
         editMode: false
       }
     )
-    this.props.updateStatus(this.statusInputRef.current.value);
+    console.log(this.state.status)
+    this.props.updateStatus(this.state.status);
+  }
+  onStatusChange = (element) => {
+    console.log(element.currentTarget.value);
+    this.setState({
+      status: element.currentTarget.value,
+    })
+    console.log(this.state.status);
+
   }
   render() {
     return (
       <div>
         {!this.state.editMode &&
           <div>
-            <span onDoubleClick={ this.activateEditMode }>{this.props.status}</span>
+            <span 
+            onDoubleClick={ this.activateEditMode }>
+              {this.props.status || "------------"}</span>
           </div>
         }
         {this.state.editMode &&
           <div>
             <input 
-              ref={this.statusInputRef}
+              // ref={this.statusInputRef}
+              onChange={this.onStatusChange}
               value={this.props.status}
-              onBlur={this.deactivateEditMode}
-              autoFocus="true"></input>
+              onBlur={this.deactivateEditMode.bind(this)}
+              autoFocus={true}></input>
           </div>
         }
       </div>
