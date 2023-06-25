@@ -23,7 +23,7 @@ export const usersAPI = {
     .then(response => response.data)
   },
   getProfile(userId) {
-    console.warn('Obsolute method. Please use profileAPI object.')
+    console.warn('Obsolete method. Please use profileAPI object.')
     return profileAPI.getProfile(userId)
   }
 }

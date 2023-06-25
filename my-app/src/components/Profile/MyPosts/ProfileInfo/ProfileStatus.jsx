@@ -49,7 +49,7 @@ class ProfileStatus extends React.Component {
             <input 
               // ref={this.statusInputRef}
               onChange={this.onStatusChange}
-              value={this.props.status}
+              value={this.state.status}
               onBlur={this.deactivateEditMode.bind(this)}
               autoFocus={true}></input>
           </div>

@@ -16,7 +16,8 @@ import { useEffect, useState } from "react";
 const ProfileContainer = (props) => {
   let {userId} = useParams();
   if (!userId) {
-    userId = 2;
+    userId = 29275;
+    // userId = 2;
   }
   const [profile, getUserProfile] = useState(null);
 
