@@ -21,7 +21,7 @@ const ProfileContainer = (props) => {
   }
   const [profile, getUserProfile] = useState(null);
 
-  useEffect( () => {
+  useEffect( () => { //props.getUserProfile(userId)
     axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
     .then(response => response.data)
     .then(data => getUserProfile(data))
