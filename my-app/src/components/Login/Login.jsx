@@ -14,37 +14,46 @@ const Login = (props) => {
   </>
 }
 const LoginForm = (props) => {
+  const submit = (values, { setSubmitting }) => {
+    
+    console.log(values)
+    setSubmitting(false);
+    
+  }
   return (
     <Formik
-      initialValues={{ email: '', password: '' }}
+      initialValues={{ email: '', password: '', rememberMe: false }}
       validate={values => {
         const errors = {};
-        if (!values.email) {
-          errors.email = 'Required';
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address';
-        }
+        // if (!values.email) {
+        //   errors.email = 'Required';
+        // } else if (
+        //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        // ) {
+        //   errors.email = 'Invalid email address';
+        // }
         return errors;
       }}
-      onSubmit={(values, { setSubmitting }) => {
-        debugger
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+      onSubmit={submit}
     >
       {({ isSubmitting }) => (
-        <form>
-          <Field type="email" name="email" />
-          <ErrorMessage name="email" component="div" />
-          <Field type="password" name="password" />
-          <ErrorMessage name="password" component="div" />
-          <button type="submit" disabled={isSubmitting}>
-            Submit
-          </button>
+        <Form>
+          <div>
+            <Field type="email" name="email" />
+            <ErrorMessage name="email" component="div" />
+          </div>
+          <div>
+            <Field type="password" name="password" />
+            <ErrorMessage name="password" component="div" />
+          </div>
+          <div>
+            <Field type={"checkbox"} name="rememberMe" />Remember me
+          </div>
+          <div>
+            <button type="submit" disabled={isSubmitting}>
+              Login
+            </button>
+          </div>
           {/* <div>
             <Field type="text" placeholder={"Login"} />
           </div>
@@ -59,7 +68,7 @@ const LoginForm = (props) => {
               Login
             </button>
           </div> */}
-        </form>
+        </Form>
       )}
     </Formik>
   )
