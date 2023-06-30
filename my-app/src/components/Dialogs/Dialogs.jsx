@@ -1,5 +1,4 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
@@ -16,19 +15,9 @@ const Dialogs = (props) => {
   let messagesElements = state.messages
     .map(message => <Message message={message.message} author={message.author} location={message.location} date={message.date} />);
 
-  let newMessageBody = state.newMessageBody;
-
-  let newMessageElement = React.createRef();
-
-  let onSendMessageClick = () => {
-    debugger
-    props.sendMessage()
-  }
-
-  let onNewMessageChange = (e) => {
-    debugger
-    // let body = e.target.value;
-    props.updateNewMessageBody(e);
+  let onSendMessageClick = (newMessageBody) => {
+    // debugger
+    props.sendMessage(newMessageBody)
   }
 
   return (
@@ -44,9 +33,8 @@ const Dialogs = (props) => {
           {
             messagesElements
           }
-          <AddMessageForm 
-          onSendMessageClick={onSendMessageClick}
-          onNewMessageChange={onNewMessageChange}
+          <AddMessageForm
+            onSendMessageClick={onSendMessageClick}
           />
 
         </div>
@@ -58,47 +46,31 @@ const Dialogs = (props) => {
 
 const AddMessageForm = (props) => {
   const submit = (values, { setSubmitting, resetForm }) => {
-    debugger
-    console.log(values.newMessageBody);
-    props.onNewMessageChange(values.newMessageBody)
-    // props.onNewMessageChange(values.newMessageBody)
-    props.onSendMessageClick()
+    // debugger
+    // console.log(values.newMessageBody);
+    props.onSendMessageClick(values.newMessageBody)
     resetForm();
     setSubmitting(false);
-    
-  }
-  const change = (values) => {
-    debugger
-    console.log(values)
-    props.onNewMessageChange(values)
-
 
   }
   return (
     <Formik
       initialValues={{ newMessageBody: '' }}
       onSubmit={submit}
-      // onChange={change}
     >
       {({ isSubmitting }) => (
         <Form>
           <div>
-            <Field 
+            <Field
               name="newMessageBody"
               as="textarea"
               placeholder="Enter your message"
-              // ref={newMessageElement}
-              // value={newMessageBody}
-              // onChange={onNewMessageChange}
-              // onChange={change}
-
-              >
+            >
             </Field>
           </div>
           <div>
-            <button 
-            // onClick={onSendMessageClick} 
-            disabled={isSubmitting}
+            <button
+              disabled={isSubmitting}
             >Send
             </button>
           </div>

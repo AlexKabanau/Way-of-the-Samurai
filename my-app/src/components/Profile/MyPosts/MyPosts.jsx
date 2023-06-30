@@ -1,3 +1,4 @@
+import { Formik, Form, Field } from "formik";
 import React from "react";
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post";
@@ -6,21 +7,11 @@ import Post from "./Post/Post";
 
 const MyPosts = (props) => {
 
-
   let postsElements = props.posts
-  .map( post => <Post name={post.name} message={post.message} id={post.id} age={post.age} likeCount={post.likesCount}/> );
+    .map(post => <Post name={post.name} message={post.message} id={post.id} age={post.age} likeCount={post.likesCount} />);
 
-  let newPostElement = React.createRef();
-
-
-  let onAddPost = () => {
-    props.addPost();
-  }
-
-  let onPostChange = () => {
-    let text = newPostElement.current.value;
-    props.updateNewPostText(text)
-    newPostElement.current.value = ''
+  let onAddPost = (newPostText) => {
+    props.addPost(newPostText);
   }
 
   return (
@@ -28,15 +19,9 @@ const MyPosts = (props) => {
       <h3>
         my posts
       </h3>
-      <div>
-        <div>
-          <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}/>
-        </div>
-
-        <div>
-          <button onClick={ onAddPost }>Add Post</button>
-        </div>
-      </div>
+      <AddPostForm 
+        onAddPost={onAddPost}
+      />
       <div className={s.posts}>
 
         {
@@ -48,4 +33,42 @@ const MyPosts = (props) => {
   )
 }
 
-export default MyPosts;
+const AddPostForm = (props) => {
+
+  const submit = (values, { setSubmitting, resetForm }) => {
+      props.onAddPost(values.newPostText)
+      resetForm();
+      setSubmitting(false);
+
+    }
+
+    return (
+      <Formik
+        initialValues={{ newPostText: '' }}
+        onSubmit={submit}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <div>
+              <Field
+                name="newPostText"
+                as="textarea"
+                placeholder="Enter your post"
+              >
+              </Field>
+            </div>
+
+            <div>
+              <button
+                disabled={isSubmitting}
+              >
+                AddPost
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    )
+  }
+
+  export default MyPosts;

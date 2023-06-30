@@ -1,7 +1,7 @@
 import { profileAPI, usersAPI } from "../components/API/api";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
@@ -11,7 +11,7 @@ let initialState = {
     { id: 2, message: "It's my first post", name: "John Doe", age: 52, likesCount: 11 },
     { id: 3, message: "Lorem", name: "Dima K", age: 28, likesCount: 8 },
   ],
-  newPostText: "it-kamasutra.com",
+  // newPostText: "it-kamasutra.com",
   profile: null,
   status: "",
 }
@@ -23,7 +23,7 @@ const profileReducer = (state = initialState, action) => {
     case ADD_POST: {
       let newPost = {
         id: 4,
-        message: state.newPostText,
+        message: action.newPostText,
         name: "AlexK",
         age: 34,
         likesCount: 0
@@ -31,15 +31,15 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [...state.posts, newPost],
-        newPostText: ''
+        // newPostText: ''
       }
     }
-    case UPDATE_NEW_POST_TEXT: {
-      return {
-        ...state,
-        newPostText: action.newText
-      };
-    }
+    // case UPDATE_NEW_POST_TEXT: {
+    //   return {
+    //     ...state,
+    //     newPostText: action.newText
+    //   };
+    // }
     case SET_USER_PROFILE: {
       return {
         ...state,
@@ -60,18 +60,20 @@ const profileReducer = (state = initialState, action) => {
   }
 }
 
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (newPostText) => {
+  debugger
   return {
     type: ADD_POST,
+    newPostText
   }
 }
 
-export const updateNewPostTextActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text
-  }
-}
+// export const updateNewPostTextActionCreator = (text) => {
+//   return {
+//     type: UPDATE_NEW_POST_TEXT,
+//     newText: text
+//   }
+// }
 export const setUserProfile = (profile) => {
   return {
     type: SET_USER_PROFILE,
