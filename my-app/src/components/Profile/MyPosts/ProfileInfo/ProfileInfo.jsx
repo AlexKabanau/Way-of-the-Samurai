@@ -5,15 +5,12 @@ import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
-    // debugger
     return <Preloader />
   }
-  // debugger
   return (
     <div>
       <div>
         <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg" alt="User main Photo" className={s.userMainPhoto}/>
-        {/* <img src='https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg' /> */}
       </div>
       <div className={s.descriptionBlock}>
         <img src={props.profile.photos.large} alt="" className={s.userPhoto}/>
@@ -25,7 +22,6 @@ const ProfileInfo = (props) => {
         </div>
       </div>
       <ProfileStatus
-      // status={"Hello123"}
       status={props.status}
       updateStatus={props.updateStatus}
       />

@@ -2,6 +2,10 @@ import { Formik, Form, Field } from "formik";
 import React from "react";
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post";
+// import { requiredField, maxLength30 } from "../../../utils/validators/validator";
+import { basicSchema } from "../../../utils/validators/validator";
+import { TextArea } from "../../Common/FormsControls/FormsControls";
+
 
 
 
@@ -37,23 +41,29 @@ const AddPostForm = (props) => {
 
   const submit = (values, { setSubmitting, resetForm }) => {
       props.onAddPost(values.newPostText)
+      // console.log(props)
       resetForm();
       setSubmitting(false);
-
     }
+
 
     return (
       <Formik
         initialValues={{ newPostText: '' }}
         onSubmit={submit}
+        validationSchema={basicSchema}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, errors, touched }) => (
           <Form>
             <div>
               <Field
                 name="newPostText"
-                as="textarea"
+                as={TextArea}
                 placeholder="Enter your post"
+                // validate={requiredField, maxLength30}
+                // validate={requiredField, maxLength30}
+                // className={errors.newPostText && touched.newPostText ? `${s.input_error}` : ""}
+                {...errors}
               >
               </Field>
             </div>
@@ -61,8 +71,9 @@ const AddPostForm = (props) => {
             <div>
               <button
                 disabled={isSubmitting}
+                type="submit"
               >
-                AddPost
+                Add Post
               </button>
             </div>
           </Form>

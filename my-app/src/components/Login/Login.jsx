@@ -16,7 +16,7 @@ const Login = (props) => {
 const LoginForm = (props) => {
   const submit = (values, { setSubmitting }) => {
     
-    console.log(values)
+    // console.log(values)
     setSubmitting(false);
     
   }
@@ -25,15 +25,16 @@ const LoginForm = (props) => {
       initialValues={{ email: '', password: '', rememberMe: false }}
       validate={values => {
         const errors = {};
-        // if (!values.email) {
-        //   errors.email = 'Required';
-        // } else if (
-        //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        // ) {
-        //   errors.email = 'Invalid email address';
-        // }
+        if (!values.email) {
+          errors.email = 'Required';
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = 'Invalid email address';
+        }
         return errors;
       }}
+      
       onSubmit={submit}
     >
       {({ isSubmitting }) => (

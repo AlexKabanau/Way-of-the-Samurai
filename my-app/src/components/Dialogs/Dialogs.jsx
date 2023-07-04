@@ -3,6 +3,7 @@ import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { Formik, Form, Field } from "formik";
+import { TextArea } from "../Common/FormsControls/FormsControls";
 
 const Dialogs = (props) => {
   // debugger
@@ -58,13 +59,14 @@ const AddMessageForm = (props) => {
       initialValues={{ newMessageBody: '' }}
       onSubmit={submit}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, errors, touched }) => (
         <Form>
           <div>
             <Field
               name="newMessageBody"
-              as="textarea"
+              as={TextArea}
               placeholder="Enter your message"
+              {...errors}
             >
             </Field>
           </div>

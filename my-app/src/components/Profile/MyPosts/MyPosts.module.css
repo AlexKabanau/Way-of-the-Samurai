@@ -5,3 +5,7 @@
 .posts {
   margin-top: 10px;
 }
+
+.input_error {
+  border-color: red;
+}
