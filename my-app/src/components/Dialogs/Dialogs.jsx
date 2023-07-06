@@ -3,7 +3,8 @@ import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { Formik, Form, Field } from "formik";
-import { TextArea } from "../Common/FormsControls/FormsControls";
+import { MessageTextArea } from "../Common/FormsControls/FormsControls";
+import { basicMessageSchema } from "../../utils/validators/validator";
 
 const Dialogs = (props) => {
   // debugger
@@ -58,13 +59,15 @@ const AddMessageForm = (props) => {
     <Formik
       initialValues={{ newMessageBody: '' }}
       onSubmit={submit}
+      validationSchema={basicMessageSchema}
+
     >
       {({ isSubmitting, errors, touched }) => (
         <Form>
           <div>
             <Field
               name="newMessageBody"
-              as={TextArea}
+              as={MessageTextArea}
               placeholder="Enter your message"
               {...errors}
             >

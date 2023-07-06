@@ -1,11 +1,30 @@
 import * as yup from "yup"
 
-export const basicSchema = yup.object().shape({
+export const basicPostSchema = yup.object().shape({
   newPostText: yup
-  .string()
-  .min(2, 'Too Short!')
-  .max(10, 'Too Long!') 
-  .required("Required")
+    .string()
+    .min(2, "Post is too short!" )
+    .max(10, 'Post is too Long!')
+    .required("Required"),
+  // newMessageBody: yup
+  //   .string()
+  //   .min(2, "Message is too short!" )
+  //   .max(10, 'Message is too Long!')
+  //   .required("Required"),
+  
+})
+export const basicMessageSchema = yup.object().shape({
+  // newPostText: yup
+  //   .string()
+  //   .min(2, "Post is too short!" )
+  //   .max(10, 'Post is too Long!')
+  //   .required("Required"),
+  newMessageBody: yup
+    .string()
+    .min(2, "Message is too short!" )
+    .max(10, 'Message is too Long!')
+    .required("Required"),
+  
 })
 
 // export const requiredField = (value) => {

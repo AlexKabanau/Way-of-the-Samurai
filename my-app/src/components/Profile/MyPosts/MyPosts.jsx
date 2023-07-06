@@ -3,8 +3,8 @@ import React from "react";
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post";
 // import { requiredField, maxLength30 } from "../../../utils/validators/validator";
-import { basicSchema } from "../../../utils/validators/validator";
-import { TextArea } from "../../Common/FormsControls/FormsControls";
+import { basicPostSchema } from "../../../utils/validators/validator";
+import { PostTextArea } from "../../Common/FormsControls/FormsControls";
 
 
 
@@ -49,16 +49,17 @@ const AddPostForm = (props) => {
 
     return (
       <Formik
-        initialValues={{ newPostText: '' }}
+        initialValues={{ newPostText: '', errorMessage: '' }}
         onSubmit={submit}
-        validationSchema={basicSchema}
+        validationSchema={basicPostSchema}
+        
       >
         {({ isSubmitting, errors, touched }) => (
           <Form>
             <div>
               <Field
                 name="newPostText"
-                as={TextArea}
+                as={PostTextArea}
                 placeholder="Enter your post"
                 // validate={requiredField, maxLength30}
                 // validate={requiredField, maxLength30}
