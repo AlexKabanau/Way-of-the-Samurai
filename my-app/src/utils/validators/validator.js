@@ -24,7 +24,7 @@ export const basicMessageSchema = yup.object().shape({
     .min(2, "Message is too short!" )
     .max(10, 'Message is too Long!')
     .required("Required"),
-  
+
 })
 
 // export const requiredField = (value) => {

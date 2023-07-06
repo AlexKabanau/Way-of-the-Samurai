@@ -17,6 +17,7 @@ export const PostTextArea = (props) => {
     </div>
   )
 }
+
 export const MessageTextArea = (props) => {
   debugger
   return (
