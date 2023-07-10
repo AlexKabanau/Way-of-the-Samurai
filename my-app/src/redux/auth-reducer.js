@@ -43,7 +43,7 @@ export const getAuthUserData = () => (dispatch) => {
       if (data.resultCode === 0) {
         let { id, login, email } = data.data;
         dispatch(setAuthUserDataAC(id, email, login, true))
-      }
+      } 
     })
 }
 export const login = (email, password, rememberMe) => (dispatch) => {
@@ -53,6 +53,8 @@ export const login = (email, password, rememberMe) => (dispatch) => {
       if (data.resultCode === 0) {
         debugger
         dispatch(getAuthUserData())
+      } else {
+        alert(data.messages)
       }
     })
 }
@@ -61,6 +63,9 @@ export const logout = () => (dispatch) => {
     .then(data => {
       if (data.resultCode === 0) {
         dispatch(setAuthUserDataAC(null, null, null, false))
+      // } else {
+        // let action = stopSubmit();
+        // debugger
       }
     })
 }
