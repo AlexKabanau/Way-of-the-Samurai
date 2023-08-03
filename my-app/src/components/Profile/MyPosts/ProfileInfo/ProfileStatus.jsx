@@ -36,7 +36,7 @@ class ProfileStatus extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    debugger
+    // debugger
     if (prevProps.status !== this.props.status) {
       this.setState({
         status: this.props.status
@@ -47,7 +47,7 @@ class ProfileStatus extends React.Component {
     // let a = this.state;
     // let b = this.props;
     // debugger
-    console.log("ComponentDidUpdate")
+    // console.log("ComponentDidUpdate")
   }
   render() {
     return (
