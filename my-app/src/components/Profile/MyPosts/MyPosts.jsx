@@ -9,7 +9,7 @@ import { PostTextArea } from "../../Common/FormsControls/FormsControls";
 
 
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(props => {
 
   let postsElements = props.posts
     .map(post => <Post name={post.name} message={post.message} id={post.id} age={post.age} likeCount={post.likesCount} />);
@@ -35,7 +35,7 @@ const MyPosts = (props) => {
       </div>
     </div>
   )
-}
+})
 
 const AddPostForm = (props) => {
 
