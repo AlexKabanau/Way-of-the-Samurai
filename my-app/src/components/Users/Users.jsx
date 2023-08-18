@@ -5,75 +5,44 @@ import { NavLink } from "react-router-dom";
 // import axios from "axios";
 import { usersAPI } from "../API/api";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import Paginator from "./Paginator"
+import User from "./User";
 
-
-let Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
-
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
+let Users = ({currentPage, onPageChanged, totalUsersCount, pageSize, followingInProgress, unfollow, follow, ...props}) => {
   return (
     <div>
       <UsersSerachForm />
-      <div>
-        {pages.map((page) => {
-          return <span
-            className={props.currentPage === page ? s.selectedPage : ''}
-            onClick={() => { props.onPageChanged(page) }}
-          >{page}</span>
-        })}
-      </div>
+      <Paginator
+        currentPage={currentPage}
+        totalUsersCount={totalUsersCount}
+        pageSize={pageSize}
+        onPageChanged={onPageChanged}
+      />
       {props.users.map(user =>
-        <div key={user.id}>
-          <span>
-            <div>
-              <NavLink to={'/profile/' + user.id}>
-                <img src={user.photos.small != null ? user.photos.small : userPhoto} className={s.userPhoto} alt="User Photo" />
-              </NavLink>
-            </div>
-            <div>
-              {user.followed
-                ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                  props.unfollow(user.id)
-                }}>Unfollow</button>
-                : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                  props.follow(user.id)
-                }}>Follow</button>
-              }
-            </div>
-          </span>
-          <span>
-            <span>
-              <span>
-                <div>{user.name}</div>
-                <div>{user.status}</div>
-              </span>
-              <span>
-                <div>{"user.location.city"}</div>
-                <div>{"user.location.country"}</div>
-              </span>
-            </span>
-          </span>
-        </div>
+        <User 
+          key={user.id}
+          user={user}
+          followingInProgress={followingInProgress}
+          unfollow={unfollow}
+          follow={follow}
+        />
       )}
     </div>
   )
 }
 
 const userSearchSerchValidate = (values) => {
-  
-    const errors = {};
-    // if (!values.email) {
-    //   errors.email = 'Required';
-    // } else if (
-    //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-    // ) {
-    //   errors.email = 'Invalid email address';
-    // }
-    return errors;
-  
+
+  const errors = {};
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+  ) {
+    errors.email = 'Invalid email address';
+  }
+  return errors;
+
 }
 
 const UsersSerachForm = () => {

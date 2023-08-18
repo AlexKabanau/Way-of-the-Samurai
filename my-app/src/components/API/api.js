@@ -43,7 +43,7 @@ export const authAPI = {
   authMe() {
 
     return instance.get(`auth/me`)
-      .then(response => response.data)
+      // .then(response => response.data)
   },
   login(email, password, rememberMe = false, captcha = null) {
 
@@ -58,7 +58,7 @@ export const authAPI = {
   logout() {
 
     return instance.delete(`auth/login`)
-      .then(response => response.data)
+      // .then(response => response.data)
   },
 }
 

@@ -1,6 +1,6 @@
 import { authAPI } from "../components/API/api";
 
-const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER_DATA = 'samurai-network/auth/SET_USER_DATA';
 
 let initialState = {
   userId: null,
@@ -37,37 +37,36 @@ export const setAuthUserDataAC = (userId, email, login, isAuth) => {
   }
 }
 
-export const getAuthUserData = () => (dispatch) => {
-  return authAPI.authMe()
-    .then(data => {
-      if (data.resultCode === 0) {
-        let { id, login, email } = data.data;
-        dispatch(setAuthUserDataAC(id, email, login, true))
-      } 
-    })
+export const getAuthUserData = () => async (dispatch) => {
+  let response = await authAPI.authMe();
+  debugger
+  if (response.data.resultCode === 0) {
+    let { id, login, email } = response.data.data;
+    dispatch(setAuthUserDataAC(id, email, login, true))
+  }
+
+
 }
-export const login = (email, password, rememberMe) => (dispatch) => {
-  authAPI.login(email, password, rememberMe)
-    .then(data => {
-      debugger
-      if (data.resultCode === 0) {
-        debugger
-        dispatch(getAuthUserData())
-      } else {
-        alert(data.messages)
-      }
-    })
+export const login = (email, password, rememberMe) => async (dispatch) => {
+  let response = await authAPI.login(email, password, rememberMe);
+
+  debugger
+  if (response.resultCode === 0) {
+    debugger
+    dispatch(getAuthUserData())
+  } else {
+    alert(response.messages)
+  }
+
 }
-export const logout = () => (dispatch) => {
-  authAPI.logout()
-    .then(data => {
-      if (data.resultCode === 0) {
-        dispatch(setAuthUserDataAC(null, null, null, false))
-      // } else {
-        // let action = stopSubmit();
-        // debugger
-      }
-    })
+export const logout = () => async (dispatch) => {
+  let response = await authAPI.logout();
+  if (response.data.resultCode === 0) {
+    dispatch(setAuthUserDataAC(null, null, null, false))
+    // } else {
+    // let action = stopSubmit();
+    // debugger
+  }
 }
 
 export default authReducer

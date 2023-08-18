@@ -37,10 +37,6 @@ export const initializeApp = () => (dispatch) => {
     dispatch(setInitializedSuccess());
 
   })
-
-
-
-
 }
 
 

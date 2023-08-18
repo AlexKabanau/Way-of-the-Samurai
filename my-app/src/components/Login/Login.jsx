@@ -1,5 +1,5 @@
 import React from "react";
-import { reduxForm } from "redux-form";
+// import { reduxForm } from "redux-form";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { connect } from "react-redux";
 import { login } from "../../redux/auth-reducer";
@@ -21,7 +21,7 @@ const LoginForm = (props) => {
   debugger
   const submit = (values, { setSubmitting }) => {
 
-    console.log(values);
+    // console.log(values);
     props.login(values.email, values.password, values.rememberMe);
     setSubmitting(false);
 
@@ -33,17 +33,17 @@ const LoginForm = (props) => {
   return (
     <Formik
       initialValues={{ email: '', password: '', rememberMe: false }}
-      // validate={values => {
-      //   const errors = {};
-      //   if (!values.email) {
-      //     errors.email = 'Required';
-      //   } else if (
-      //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-      //   ) {
-      //     errors.email = 'Invalid email address';
-      //   }
-      //   return errors;
-      // }}
+      validate={values => {
+        const errors = {};
+        if (!values.email) {
+          errors.email = 'Required';
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = 'Invalid email address';
+        }
+        return errors;
+      }}
 
       onSubmit={submit}
     >
