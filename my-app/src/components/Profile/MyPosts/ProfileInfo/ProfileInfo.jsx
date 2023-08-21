@@ -4,8 +4,8 @@ import Preloader from "../../../Common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}) => {
+  if (!profile) {
     return <Preloader />
   }
   return (
@@ -14,17 +14,17 @@ const ProfileInfo = (props) => {
         <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg" alt="User main Photo" className={s.userMainPhoto}/>
       </div>
       <div className={s.descriptionBlock}>
-        <img src={props.profile.photos.large} alt="" className={s.userPhoto}/>
+        <img src={profile.photos.large} alt="" className={s.userPhoto}/>
         <div className={s.description}>
-          <p className={s.fullName}>{props.profile.fullName}</p>
-          <p className={s.aboutMe}>{props.profile.aboutMe}</p>
-          <p className={s.job}>{props.profile.lookingForAJobDescription}</p>
+          <p className={s.fullName}>{profile.fullName}</p>
+          <p className={s.aboutMe}>{profile.aboutMe}</p>
+          <p className={s.job}>{profile.lookingForAJobDescription}</p>
 
         </div>
       </div>
       <ProfileStatusWithHooks
-      status={props.status}
-      updateStatus={props.updateStatus}
+      status={status}
+      updateStatus={updateStatus}
       />
     </div>
   )
