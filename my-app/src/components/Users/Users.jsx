@@ -14,7 +14,7 @@ let Users = ({currentPage, onPageChanged, totalUsersCount, pageSize, followingIn
       <UsersSerachForm />
       <Paginator
         currentPage={currentPage}
-        totalUsersCount={totalUsersCount}
+        totalItemsCount={totalUsersCount}
         pageSize={pageSize}
         onPageChanged={onPageChanged}
       />
