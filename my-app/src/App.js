@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Header from './components/Header/Header';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
@@ -10,7 +10,6 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Setting';
 import { Routes, Route, } from 'react-router-dom';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Login from './components/Login/Login';
 import { getAuthUserData } from './redux/auth-reducer';
@@ -23,6 +22,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 
+const DialogsContainer = React.lazy( () => import('./components/Dialogs/DialogsContainer') );
 
 
 class App extends React.Component {
@@ -41,7 +41,8 @@ class App extends React.Component {
         <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Routes>
+          <Suspense fallback={<div>Loading</div>}>
+            <Routes>
             <Route path="/" element={
               <ProfileContainer />} />
             <Route path="/dialogs/*" element={
@@ -61,8 +62,8 @@ class App extends React.Component {
             <Route path="/login" element={
               <Login />} />
           </Routes>
-
-
+          </Suspense>
+          
         </div>
         <footer></footer>
       </div>
