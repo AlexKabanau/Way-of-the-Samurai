@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Way-of-the-Samurai/my-app/precache-manifest.8709cf7b0f565d7e2bf0265beb7c4c2c.js"
+  "/Way-of-the-Samurai/precache-manifest.ac21ab47fc5f49eb48499dfe24cb0cdb.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Way-of-the-Samurai/my-app/index.html", {
+workbox.routing.registerNavigationRoute("/Way-of-the-Samurai/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
