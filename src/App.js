@@ -18,7 +18,7 @@ import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/Common/Preloader/Preloader';
 
 import store from './redux/redux-store';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 
@@ -85,7 +85,7 @@ let AppContainer = connect(mapStateToProps, {initializeApp})(App);
 
 let SamuraiJSApp = (props) => {
   return <React.StrictMode>
-  <BrowserRouter>
+  <HashRouter>
     <Provider store={store}>
       <AppContainer 
         // state={state} 
@@ -95,7 +95,7 @@ let SamuraiJSApp = (props) => {
     </Provider>
       
 
-  </BrowserRouter>
+  </HashRouter>
 </React.StrictMode>
 }
 

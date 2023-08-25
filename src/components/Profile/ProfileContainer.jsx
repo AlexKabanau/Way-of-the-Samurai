@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios"
 
 import { Navigate } from "react-router-dom";
-import { getUserProfile, getStatus, updateStatus } from "../../redux/profile-reducer";
+import { getUserProfile, getStatus, updateStatus, savePhoto } from "../../redux/profile-reducer";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -26,6 +26,8 @@ const ProfileContainer = (props) => {
   props.getStatus(userId)
 
 
+
+  
     return (
       <main>
         <Profile
@@ -33,6 +35,8 @@ const ProfileContainer = (props) => {
           profile={profile}
           status={props.status}
           updateStatus={props.updateStatus}
+          isOwner={userId == 29275 ? true : false}
+          savePhoto={props.savePhoto}
         />
       </main>
     )
@@ -51,6 +55,7 @@ export default compose(
   connect(mapStateToProps, {
     getUserProfile,
     getStatus,
-    updateStatus
+    updateStatus,
+    savePhoto
   }),
 )(ProfileContainer);

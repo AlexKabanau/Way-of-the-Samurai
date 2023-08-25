@@ -8,6 +8,7 @@ import { setUserProfile } from "../../redux/profile-reducer";
 
 
 const Profile = (props) => {
+  // debugger
   // console.log(useParams())
 
   // let {userId} = useParams();
@@ -27,13 +28,15 @@ const Profile = (props) => {
 
   return (
     <main>
-      <ProfileInfo 
+      <ProfileInfo
+        isOwner={props.isOwner}
         profile={props.profile}
         status={props.status}
         updateStatus={props.updateStatus}
+        savePhoto={props.savePhoto}
       />
       <MyPostsContainer
-        // store={props.store}
+      // store={props.store}
       />
     </main>
   )
