@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios"
 
 import { Navigate } from "react-router-dom";
-import { getUserProfile, getStatus, updateStatus, savePhoto } from "../../redux/profile-reducer";
+import { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile } from "../../redux/profile-reducer";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -56,6 +56,7 @@ export default compose(
     getUserProfile,
     getStatus,
     updateStatus,
-    savePhoto
+    savePhoto,
+    saveProfile
   }),
 )(ProfileContainer);
