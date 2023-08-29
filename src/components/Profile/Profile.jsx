@@ -8,7 +8,7 @@ import { setUserProfile } from "../../redux/profile-reducer";
 
 
 const Profile = (props) => {
-  // debugger
+  debugger
   // console.log(useParams())
 
   // let {userId} = useParams();

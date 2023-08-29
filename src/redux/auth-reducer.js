@@ -1,19 +1,22 @@
-import { authAPI } from "../components/API/api";
+import { authAPI, securityAPI } from "../components/API/api";
 
 const SET_USER_DATA = 'samurai-network/auth/SET_USER_DATA';
+const GET_CAPTCH_URL_SECCESS = 'samurai-network/auth/GET_CAPTCH_URL_SECCESS';
 
 let initialState = {
   userId: null,
   email: null,
   login: null,
   isAuth: false,
+  captchaUrl: null
 }
 
 const authReducer = (state = initialState, action) => {
   // debugger
   switch (action.type) {
-    case SET_USER_DATA: {
-      // debugger
+    case SET_USER_DATA:
+    case GET_CAPTCH_URL_SECCESS: {
+      debugger
       return {
         ...state,
         ...action.payload,
@@ -36,6 +39,14 @@ export const setAuthUserDataAC = (userId, email, login, isAuth) => {
     }
   }
 }
+export const getCaptchUrlSuccess = (captchaUrl) => {
+  return {
+    type: GET_CAPTCH_URL_SECCESS,
+    payload: {
+      captchaUrl
+    }
+  }
+}
 
 export const getAuthUserData = () => async (dispatch) => {
   let response = await authAPI.authMe();
@@ -54,8 +65,12 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
   if (response.resultCode === 0) {
     // debugger
     dispatch(getAuthUserData())
-  } else {
+  } else  {
+    if (response.resultCode === 10) {
+      dispatch(getCaptchUrl())
+    }
     alert(response.messages)
+    
   }
 
 }
@@ -64,9 +79,16 @@ export const logout = () => async (dispatch) => {
   if (response.data.resultCode === 0) {
     dispatch(setAuthUserDataAC(null, null, null, false))
     // } else {
-    // let action = stopSubmit();
-    // debugger
+      // let action = stopSubmit();
+      // debugger
+    }
   }
-}
+  
+  export const getCaptchUrl = () => async (dispatch) => {
+    const response = await securityAPI.getCaptchUrl();
+    const captchUrl = response.data.url;
+    dispatch(getCaptchUrlSuccess(captchUrl))
 
+  
+  }
 export default authReducer

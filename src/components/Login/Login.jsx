@@ -18,7 +18,7 @@ const Login = (props) => {
   </>
 }
 const LoginForm = (props) => {
-  // debugger
+  debugger
   const submit = (values, { setSubmitting }) => {
 
     // console.log(values);
@@ -26,6 +26,7 @@ const LoginForm = (props) => {
     setSubmitting(false);
 
   }
+  let captchaUrl=props.captchaUrl;
 
   if (props.isAuth) {
     return <Navigate to="/profile" />
@@ -44,7 +45,7 @@ const LoginForm = (props) => {
         }
         return errors;
       }}
-
+      captchaUrl={props.captchaUrl}
       onSubmit={submit}
     >
       {({ isSubmitting }) => (
@@ -63,6 +64,9 @@ const LoginForm = (props) => {
           <div>
             <Field type={"checkbox"} name="rememberMe" />Remember me
           </div>
+
+        {captchaUrl && <img src={captchaUrl}/>}
+
           <div>
             <button type="submit" disabled={isSubmitting}>
               Login
@@ -74,8 +78,9 @@ const LoginForm = (props) => {
   )
 }
 const mapStateToProps = (state) => {
+  debugger
   return {
-
+    captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth
   }
 }

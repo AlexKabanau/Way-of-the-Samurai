@@ -40,7 +40,7 @@ export const profileAPI = {
   savePhoto(photoFile) {
     const formData = new FormData();
     formData.append("image", photoFile);
-
+    // debugger
     return instance.put(`profile/photo`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
@@ -73,5 +73,13 @@ export const authAPI = {
     return instance.delete(`auth/login`)
       // .then(response => response.data)
   },
+}
+export const securityAPI = {
+  getCaptchUrl() {
+
+    return instance.get(`security/get-captcha-url`)
+      // .then(response => response.data)
+  },
+  
 }
 
