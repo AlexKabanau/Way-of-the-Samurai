@@ -21,8 +21,8 @@ const LoginForm = (props) => {
   debugger
   const submit = (values, { setSubmitting }) => {
 
-    // console.log(values);
-    props.login(values.email, values.password, values.rememberMe);
+    console.log(values);
+    props.login(values.email, values.password, values.rememberMe, values.antiBotSymbols);
     setSubmitting(false);
 
   }
@@ -33,7 +33,7 @@ const LoginForm = (props) => {
   }
   return (
     <Formik
-      initialValues={{ email: '', password: '', rememberMe: false }}
+      initialValues={{ email: '', password: '', rememberMe: false, antiBotSymbols: '' }}
       validate={values => {
         const errors = {};
         if (!values.email) {
@@ -66,6 +66,10 @@ const LoginForm = (props) => {
           </div>
 
         {captchaUrl && <img src={captchaUrl}/>}
+        {captchaUrl && <div>
+            <label for="antiBotSymbols">Captcha</label>
+            <Field type="text" name="antiBotSymbols" requiered/>
+          </div>}
 
           <div>
             <button type="submit" disabled={isSubmitting}>
