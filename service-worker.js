@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Way-of-the-Samurai/precache-manifest.2c34199ca55115e2fd583388ca557fc3.js"
+  "/Way-of-the-Samurai/precache-manifest.84fb2c54faed89ed2a2e1eb053c6d698.js"
 );
 
 workbox.clientsClaim();
