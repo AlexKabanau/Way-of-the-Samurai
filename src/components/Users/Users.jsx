@@ -1,10 +1,10 @@
 import React from "react";
-import s from "./Users.module.css";
-import userPhoto from "../../assets/images/userphoto.png"
-import { NavLink } from "react-router-dom";
+// import s from "./Users.module.css";
+// import userPhoto from "../../assets/images/userphoto.png"
+// import { NavLink } from "react-router-dom";
 // import axios from "axios";
-import { usersAPI } from "../API/api";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+// import { usersAPI } from "../API/api";
+import { Formik, Form, Field } from 'formik';
 import Paginator from "./Paginator"
 import User from "./User";
 
@@ -48,7 +48,7 @@ const userSearchSerchValidate = (values) => {
 const UsersSerachForm = () => {
 
   const submit = (values, { setSubmitting }) => {
-    debugger
+    // debugger
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
       setSubmitting(false);

@@ -4,9 +4,9 @@ import { follow, unfollow,  setCurrentPage,   toggleIsFollowingProgress } from "
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
 import { requestUsers } from "../../redux/users-reducer";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+// import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
-import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers, getUsersSuper, getUsersSuperSelector } from "../../redux/users-selectors";
+import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from "../../redux/users-selectors";
 
 
 class UsersContainer extends React.Component {

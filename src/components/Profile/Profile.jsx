@@ -2,9 +2,9 @@ import React from "react";
 // import s from "./Profile.module.css"
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { setUserProfile } from "../../redux/profile-reducer";
+// import { useEffect, useState } from "react";
+// import { useParams } from "react-router-dom";
+// import { setUserProfile } from "../../redux/profile-reducer";
 
 
 const Profile = (props) => {

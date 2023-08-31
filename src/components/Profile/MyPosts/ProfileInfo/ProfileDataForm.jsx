@@ -1,6 +1,6 @@
 import React from "react"
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Contact } from "./ProfileInfo";
+import { Formik, Form, Field } from 'formik';
+// import { Contact } from "./ProfileInfo";
 import s from "./ProfileInfo.module.css"
 
 const ProfileDataForm = ({ profile, saveProfile, setEditMode }) => {

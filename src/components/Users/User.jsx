@@ -3,9 +3,9 @@ import s from "./Users.module.css";
 import userPhoto from "../../assets/images/userphoto.png"
 import { NavLink } from "react-router-dom";
 // import axios from "axios";
-import { usersAPI } from "../API/api";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import Paginator from "./Paginator"
+// import { usersAPI } from "../API/api";
+// import { Formik, Form, Field, ErrorMessage } from 'formik';
+// import Paginator from "./Paginator"
 
 let User = ({  user, followingInProgress, unfollow, follow, ...props }) => {
   return (
@@ -13,7 +13,7 @@ let User = ({  user, followingInProgress, unfollow, follow, ...props }) => {
       <span>
         <div>
           <NavLink to={'/profile/' + user.id}>
-            <img src={user.photos.small != null ? user.photos.small : userPhoto} className={s.userPhoto} alt="User Photo" />
+            <img src={user.photos.small != null ? user.photos.small : userPhoto} className={s.userPhoto} alt="UserPhoto" />
           </NavLink>
         </div>
         <div>

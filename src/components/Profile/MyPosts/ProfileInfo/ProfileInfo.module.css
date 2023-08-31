@@ -7,13 +7,14 @@
   margin-top: -360px;
   display: flex;
   align-items: flex-end;
+  color: rgb(149 93 10);
 }
 .description {
   display: grid;
   padding-left: 10px;
 }
 .fullName {
-  color: black;
+  /* color: black; */
   font-weight: bold;
   text-transform: uppercase;
 }

@@ -1,4 +1,4 @@
-import { authAPI } from "../components/API/api";
+// import { authAPI } from "../components/API/api";
 import { getAuthUserData } from "./auth-reducer";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';

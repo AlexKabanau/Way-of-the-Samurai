@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios"
 
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile } from "../../redux/profile-reducer";
 import Profile from "./Profile";
 import { connect } from "react-redux";
@@ -11,35 +11,32 @@ import { useEffect, useState } from "react";
 
 
 const ProfileContainer = (props) => {
-  let {userId} = useParams();
+  let { userId } = useParams();
   if (!userId) {
     userId = 29275;
     // userId = 2;
   }
   const [profile, getUserProfile] = useState(null);
 
-  useEffect( () => { 
+  useEffect(() => {
     axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
-    .then(response => response.data)
-    .then(data => getUserProfile(data))
+      .then(response => response.data)
+      .then(data => getUserProfile(data))
   }, [userId]);
   props.getStatus(userId)
 
-
-
-  
-    return (
-      <main>
-        <Profile
-          {...props}
-          profile={profile}
-          status={props.status}
-          updateStatus={props.updateStatus}
-          isOwner={userId == 29275 ? true : false}
-          savePhoto={props.savePhoto}
-        />
-      </main>
-    )
+  return (
+    <main>
+      <Profile
+        {...props}
+        profile={profile}
+        status={props.status}
+        updateStatus={props.updateStatus}
+        isOwner={userId === 29275 ? true : false}
+        savePhoto={props.savePhoto}
+      />
+    </main>
+  )
   // }
 }
 

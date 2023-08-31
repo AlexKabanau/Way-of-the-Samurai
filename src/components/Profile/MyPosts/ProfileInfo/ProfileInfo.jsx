@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import s from "./ProfileInfo.module.css"
 import Preloader from "../../../Common/Preloader/Preloader";
-import ProfileStatus from "./ProfileStatus";
+// import ProfileStatus from "./ProfileStatus";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../../assets/images/userphoto.png"
 import ProfileDataForm from "./ProfileDataForm";
@@ -35,7 +35,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, savePr
   return (
     <div>
       <div>
-        <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg" alt="User main Photo" className={s.userMainPhoto} />
+        <img src="https://open.lib.umn.edu/app/uploads/sites/5/2015/09/9.1.jpg" alt="User mainPhoto" className={s.userMainPhoto} />
       </div>
       <div className={s.descriptionBlock}>
         <img src={profile.photos.large || userPhoto} alt="" className={s.userPhoto} />

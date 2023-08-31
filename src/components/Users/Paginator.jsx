@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import s from "./Users.module.css";
+// import s from "./Users.module.css";
 import style from "./Paginator.module.css"
 // import userPhoto from "../../assets/images/userphoto.png"
 // import { NavLink } from "react-router-dom";
 // // import axios from "axios";
 // import { usersAPI } from "../API/api";
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
+import cn from "classnames"
 
 
 let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionsSize = 10, ...props}) => {
@@ -29,7 +30,10 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portion
       .filter(page => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
       .map((page) => {
         return <span
-          className={currentPage === page ? style.selectedPage : style.pageNumber}
+          className={ cn({
+            [style.selectedPage]: currentPage === page
+          }, style.pageNumber)} 
+          // currentPage === page ? style.selectedPage : style.pageNumber}
           onClick={() => { onPageChanged(page) }}
         >{page}</span>
       })}

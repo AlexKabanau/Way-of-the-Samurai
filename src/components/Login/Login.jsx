@@ -65,7 +65,7 @@ const LoginForm = (props) => {
             <Field type={"checkbox"} name="rememberMe" />Remember me
           </div>
 
-        {captchaUrl && <img src={captchaUrl}/>}
+        {captchaUrl && <img src={captchaUrl} alt="Captcha"/>}
         {captchaUrl && <div>
             <label for="antiBotSymbols">Captcha</label>
             <Field type="text" name="antiBotSymbols" requiered/>
