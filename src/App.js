@@ -92,8 +92,8 @@ let AppContainer = connect(mapStateToProps, { initializeApp })(App);
 
 let SamuraiJSApp = (props) => {
   return <React.StrictMode>
-    {/* <HashRouter> */}
-    <BrowserRouter>
+    <HashRouter>
+    {/* <BrowserRouter> */}
       <Provider store={store}>
         <AppContainer
         // state={state} 
@@ -101,8 +101,8 @@ let SamuraiJSApp = (props) => {
         // store={store}
         />
       </Provider>
-      {/* </HashRouter> */}
-    </BrowserRouter>
+      </HashRouter>
+    {/* </BrowserRouter> */}
   </React.StrictMode>
 }
 
