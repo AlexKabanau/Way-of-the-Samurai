@@ -18,7 +18,7 @@ import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/Common/Preloader/Preloader';
 
 import store from './redux/redux-store';
-// import { HashRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 
