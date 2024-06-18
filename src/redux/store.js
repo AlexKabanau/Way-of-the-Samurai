@@ -1,11 +1,12 @@
 // import { rerenderEntireTree } from "../render";
 import sidebarReducer from "./sidebar-reducer";
 import profileReducer from "./profile-reducer";
+// import dialogsReducer from "./dialogs-reducer.ts";
 import dialogsReducer from "./dialogs-reducer";
 
 let store = {
   _state: {
-    
+
     profilePage: {
       posts: [
         { id: 1, message: "Hi, how are you?", name: "Alex K", age: 34, likesCount: 12 },

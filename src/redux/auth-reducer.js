@@ -65,12 +65,16 @@ export const login = (email, password, rememberMe, captcha) => async (dispatch) 
   if (response.resultCode === 0) {
     // debugger
     dispatch(getAuthUserData())
-  } else  {
+  } else {
     if (response.resultCode === 10) {
       dispatch(getCaptchUrl())
     }
+
+
+
+
     alert(response.messages)
-    
+
   }
 
 }
@@ -79,16 +83,16 @@ export const logout = () => async (dispatch) => {
   if (response.data.resultCode === 0) {
     dispatch(setAuthUserDataAC(null, null, null, false))
     // } else {
-      // let action = stopSubmit();
-      // debugger
-    }
+    //   let action = stopSubmit();
+    //   debugger
   }
-  
-  export const getCaptchUrl = () => async (dispatch) => {
-    const response = await securityAPI.getCaptchUrl();
-    const captchUrl = response.data.url;
-    dispatch(getCaptchUrlSuccess(captchUrl))
+}
 
-  
-  }
+export const getCaptchUrl = () => async (dispatch) => {
+  const response = await securityAPI.getCaptchUrl();
+  const captchUrl = response.data.url;
+  dispatch(getCaptchUrlSuccess(captchUrl))
+
+
+}
 export default authReducer
