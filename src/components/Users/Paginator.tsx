@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 // import s from "./Users.module.css";
 import style from './Paginator.module.css';
 // import userPhoto from "../../assets/images/userphoto.png"
@@ -8,16 +8,22 @@ import style from './Paginator.module.css';
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
 import cn from 'classnames';
 
-let Paginator = ({
+type PropsType = {
+  totalItemsCount: number;
+  pageSize: number;
+  currentPage: number;
+  onPageChanged: (pageNumber: number) => void;
+  portionsSize?: number;
+};
+let Paginator: FC<PropsType> = ({
   totalItemsCount,
   pageSize,
   currentPage,
   onPageChanged,
   portionsSize = 10,
-  ...props
 }) => {
   let pagesCount = Math.ceil(totalItemsCount / pageSize);
-  let pages = [];
+  let pages: Array<number> = [];
 
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
