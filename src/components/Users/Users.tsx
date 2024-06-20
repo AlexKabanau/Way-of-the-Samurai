@@ -15,8 +15,8 @@ type PropsType = {
   totalUsersCount: number;
   pageSize: number;
   followingInProgress: Array<number>;
-  unfollow: () => void;
-  follow: () => void;
+  unfollow: (userId: number) => void;
+  follow: (userId: number) => void;
   users: Array<UserType>;
 };
 

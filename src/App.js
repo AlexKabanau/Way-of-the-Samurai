@@ -66,7 +66,7 @@ class App extends React.Component {
               <Route path="/settings" element={
                 <Settings />} />
               <Route path="/users" element={
-                <UsersContainer />} />
+                <UsersContainer pageTitle="PageTitle" />} />
               <Route path="/login" element={
                 <Login />} />
               <Route path="*" element={
@@ -93,7 +93,7 @@ let AppContainer = connect(mapStateToProps, { initializeApp })(App);
 let SamuraiJSApp = (props) => {
   return <React.StrictMode>
     <HashRouter>
-    {/* <BrowserRouter> */}
+      {/* <BrowserRouter> */}
       <Provider store={store}>
         <AppContainer
         // state={state} 
@@ -101,7 +101,7 @@ let SamuraiJSApp = (props) => {
         // store={store}
         />
       </Provider>
-      </HashRouter>
+    </HashRouter>
     {/* </BrowserRouter> */}
   </React.StrictMode>
 }
