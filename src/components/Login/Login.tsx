@@ -37,7 +37,7 @@ const Login: FC<MapStateToPropsType & MapDispatchToPropsType> = (props) => {
 
 const LoginForm: FC<MapDispatchToPropsType> = (props) => {
   debugger;
-  const submit = (values: any, { setSubmitting }: any) => {
+  const submit = (values: InitialStateFormikType, { setSubmitting }: any) => {
     console.log(values);
     props.login(values.email, values.password, values.rememberMe, values.antiBotSymbols);
     setSubmitting(false);
@@ -110,4 +110,5 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     isAuth: state.auth.isAuth,
   };
 };
+//@ts-ignore
 export default connect(mapStateToProps, { login })(Login);

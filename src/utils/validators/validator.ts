@@ -1,18 +1,17 @@
-import * as yup from "yup"
+import * as yup from 'yup';
 
 export const basicPostSchema = yup.object().shape({
   newPostText: yup
     .string()
-    .min(2, "Post is too short!" )
+    .min(2, 'Post is too short!')
     .max(10, 'Post is too Long!')
-    .required("Required"),
+    .required('Required'),
   // newMessageBody: yup
   //   .string()
   //   .min(2, "Message is too short!" )
   //   .max(10, 'Message is too Long!')
   //   .required("Required"),
-  
-})
+});
 export const basicMessageSchema = yup.object().shape({
   // newPostText: yup
   //   .string()
@@ -21,11 +20,10 @@ export const basicMessageSchema = yup.object().shape({
   //   .required("Required"),
   newMessageBody: yup
     .string()
-    .min(2, "Message is too short!" )
+    .min(2, 'Message is too short!')
     .max(10, 'Message is too Long!')
-    .required("Required"),
-
-})
+    .required('Required'),
+});
 
 // export const requiredField = (value) => {
 //   if (value) {
@@ -39,4 +37,3 @@ export const basicMessageSchema = yup.object().shape({
 //   }
 //   return 'Field is required'
 // }
-
