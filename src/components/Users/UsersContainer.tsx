@@ -1,14 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  follow,
-  unfollow,
-  setCurrentPage,
-  toggleIsFollowingProgress,
-} from '../../redux/users-reducer';
+import { actions, follow, unfollow, requestUsers } from '../../redux/users-reducer';
 import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
-import { requestUsers } from '../../redux/users-reducer';
 // import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from 'redux';
 import {
@@ -107,8 +101,8 @@ export default compose(
   connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
     follow,
     unfollow,
-    toggleIsFollowingProgress,
-    setCurrentPage,
+    // actions.toggleIsFollowingProgress,
+    // actions.setCurrentPage,
     getUsers: requestUsers,
   }),
 )(UsersContainer);
