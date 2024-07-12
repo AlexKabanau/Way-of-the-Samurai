@@ -1,5 +1,6 @@
 import { AppStateType } from './redux-store';
-import { profileAPI, usersAPI } from '../components/API/api';
+import { profileAPI } from '../components/API/profile-api';
+import { usersAPI } from '../components/API/users-api';
 import { PhotosType, PostType, ProfileType } from '../types/types';
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';

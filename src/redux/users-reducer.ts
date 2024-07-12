@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { usersAPI } from '../components/API/api';
+import { usersAPI } from '../components/API/users-api';
 import { PhotosType, UserType } from '../types/types';
 import { updateObjectInArray } from '../utils/validators/object-helpers';
 import { AppStateType, InferActionsTypes } from './redux-store';

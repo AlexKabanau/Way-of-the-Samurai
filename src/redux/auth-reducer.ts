@@ -1,10 +1,7 @@
 import { Dispatch } from 'redux';
-import {
-  authAPI,
-  ResultCodeForCaptureEnum,
-  ResultCodesEnum,
-  securityAPI,
-} from '../components/API/api';
+import { ResultCodeForCaptureEnum, ResultCodesEnum } from '../components/API/api';
+import { securityAPI } from '../components/API/security-api';
+import { authAPI } from '../components/API/auth-api';
 import { AppStateType } from './redux-store';
 import { ThunkAction } from 'redux-thunk';
 
