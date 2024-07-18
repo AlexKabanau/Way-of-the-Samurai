@@ -1,4 +1,4 @@
-import { GetItemsType, instance } from './api';
+import { GetItemsType, instance, APIResponseType } from './api';
 import { profileAPI } from './profile-api';
 
 export const usersAPI = {
@@ -8,13 +8,15 @@ export const usersAPI = {
       .then((response) => response.data);
   },
   unfollowUser(userId: number) {
-    return instance.delete(`follow/${userId}`).then((response) => response.data);
+    return instance.delete(`follow/${userId}`).then((response) => response.data) as Promise<
+      APIResponseType
+    >;
   },
   followUser(userId: number) {
-    return instance.post(`follow/${userId}`).then((response) => response.data);
+    return instance.post<APIResponseType>(`follow/${userId}`).then((response) => response.data);
   },
-  getProfile(userId: number) {
-    console.warn('Obsolete method. Please use profileAPI object.');
-    return profileAPI.getProfile(userId);
-  },
+  // getProfile(userId: number) {
+  //   console.warn('Obsolete method. Please use profileAPI object.');
+  //   return profileAPI.getProfile(userId);
+  // },
 };

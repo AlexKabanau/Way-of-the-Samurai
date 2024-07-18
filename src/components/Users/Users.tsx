@@ -10,10 +10,10 @@ import User from './User';
 import { UserType } from '../../types/types';
 
 type PropsType = {
-  currentPage: number;
-  onPageChanged: (pageNumber: number) => void;
   totalUsersCount: number;
   pageSize: number;
+  currentPage: number;
+  onPageChanged: (pageNumber: number) => void;
   followingInProgress: Array<number>;
   unfollow: (userId: number) => void;
   follow: (userId: number) => void;

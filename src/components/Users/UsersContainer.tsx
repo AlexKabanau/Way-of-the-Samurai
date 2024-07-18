@@ -27,11 +27,11 @@ type MapStatePropsType = {
 };
 
 type MapDispatchPropsType = {
-  follow: (userId: number) => void;
-  unfollow: (userId: number) => void;
   getUsers: (currentPage: number, pageSize: number) => void;
-  setCurrentPage: (currentPage: number) => void;
-  toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void;
+  unfollow: (userId: number) => void;
+  follow: (userId: number) => void;
+  // setCurrentPage: (currentPage: number) => void;
+  // toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void;
 };
 
 type OwnPropsType = {
@@ -101,8 +101,8 @@ export default compose(
   connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
     follow,
     unfollow,
-    // actions.toggleIsFollowingProgress,
-    // actions.setCurrentPage,
+    // toggleIsFollowingProgress: actions.toggleIsFollowingProgress,
+    // setCurrentPage: actions.setCurrentPage,
     getUsers: requestUsers,
   }),
 )(UsersContainer);

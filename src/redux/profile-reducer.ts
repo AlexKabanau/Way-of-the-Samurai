@@ -132,29 +132,29 @@ type DispatchType = Dispatch<ActionsType>;
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>;
 
 export const getUserProfile = (userId: number): ThunkType => async (dispatch: DispatchType) => {
-  let response = await usersAPI.getProfile(userId);
-  dispatch(setUserProfile(response.data));
+  let response = await profileAPI.getProfile(userId);
+  dispatch(setUserProfile(response));
 };
 export const getStatus = (userId: number): ThunkType => async (
   dispatch: DispatchType,
   getState: GetStateType,
 ) => {
   let response = await profileAPI.getStatus(userId);
-  dispatch(setStatus(response.data));
+  dispatch(setStatus(response));
 };
 export const updateStatus = (status: string): ThunkType => async (dispatch: DispatchType) => {
   let response = await profileAPI.updateStatus(status);
 
-  if (response.data.resultCode === 0) {
+  if (response.resultCode === 0) {
     dispatch(setStatus(status));
   }
 };
 export const savePhoto = (file: any): ThunkType => async (dispatch: DispatchType) => {
   let response = await profileAPI.savePhoto(file);
 
-  if (response.data.resultCode === 0) {
+  if (response.resultCode === 0) {
     // debugger
-    dispatch(savePhotoSuccess(response.data.data.photos));
+    dispatch(savePhotoSuccess(response.data.photos));
   }
 };
 export const saveProfile = (profile: ProfileType): ThunkType => async (
@@ -164,7 +164,7 @@ export const saveProfile = (profile: ProfileType): ThunkType => async (
   const userId = getState().auth.userId as number;
   let response = await profileAPI.saveProfile(profile);
   // debugger
-  if (response.data.resultCode === 0) {
+  if (response.resultCode === 0) {
     dispatch(getUserProfile(userId));
   }
 };

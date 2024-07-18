@@ -22,6 +22,7 @@ let rootReducer = combineReducers({
 });
 
 type RootReduserType = typeof rootReducer;
+
 export type AppStateType = ReturnType<RootReduserType>;
 
 type PropertiesType<T> = T extends { [key: string]: infer U } ? U : never;

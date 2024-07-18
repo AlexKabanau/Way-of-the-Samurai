@@ -5,7 +5,7 @@ export const instance = axios.create({
   withCredentials: true,
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   headers: {
-    'API-KEY': 'a6235f60-17e5-4077-a023-12c9679f93bf',
+    'API-KEY': 'd4dbea94-9075-4024-975c-55094f7b9304',
   },
 });
 
@@ -22,7 +22,7 @@ export type GetItemsType = {
   totalCount: number;
   error: string | null;
 };
-export type ResponseType<D = {}, RC = ResultCodesEnum> = {
+export type APIResponseType<D = {}, RC = ResultCodesEnum> = {
   data: D;
   messages: Array<string>;
   resultCode: RC;
