@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { usersAPI } from '../components/API/users-api';
 import { PhotosType, UserType } from '../types/types';
 import { updateObjectInArray } from '../utils/validators/object-helpers';
-import { AppStateType, InferActionsTypes } from './redux-store';
+import { AppStateType, BaseThunkType, InferActionsTypes } from './redux-store';
 import { ThunkAction } from 'redux-thunk';
 
 // const FOLLOW = 'FOLLOW';
@@ -173,7 +173,7 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
 
 type GetStateType = () => AppStateType;
 type DispatchType = Dispatch<ActionsTypes>;
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
+type ThunkType = BaseThunkType<ActionsTypes>;
 
 export const requestUsers = (page: number, pageSize: number): ThunkType => {
   return async (dispatch: DispatchType, getState: GetStateType) => {
