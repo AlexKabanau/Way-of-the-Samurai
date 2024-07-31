@@ -71,7 +71,7 @@ let initialState = {
 };
 
 export const actions = {
-  sendMessageCreator: (newMessageBody: string) => {
+  sendMessage: (newMessageBody: string) => {
     return {
       type: 'SN/DIALOGS/SEND-MESSAGE',
       newMessageBody,

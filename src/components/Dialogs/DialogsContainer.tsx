@@ -6,21 +6,13 @@ import { connect } from 'react-redux';
 // import { Navigate } from "react-router-dom";
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
+import { AppStateType } from '../../redux/redux-store';
 // import StoreContext from "../../StoreContext";
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
   return {
     dialogsPage: state.dialogsPage,
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    sendMessage: (newMessageBody) => {
-      // debugger
-      dispatch(actions.sendMessageCreator(newMessageBody));
-    },
-  };
-};
-
-export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialogs);
+export default compose(connect(mapStateToProps, { ...actions }), withAuthRedirect)(Dialogs);

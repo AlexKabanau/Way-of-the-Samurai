@@ -26,11 +26,14 @@ type RootReduserType = typeof rootReducer;
 
 export type AppStateType = ReturnType<RootReduserType>;
 
-type PropertiesType<T> = T extends { [key: string]: infer U } ? U : never;
+// type PropertiesType<T> = T extends { [key: string]: infer U } ? U : never;
 
-export type InferActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<
-  PropertiesType<T>
->;
+// export type InferActionsTypes1<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<
+//   PropertiesType<T>
+// >;
+export type InferActionsTypes<T> = T extends { [key: string]: (...args: any[]) => infer U }
+  ? U
+  : never;
 
 export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<
   R,

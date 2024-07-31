@@ -2,11 +2,19 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { Formik, Form, Field } from 'formik';
-import { MessageTextArea } from '../Common/FormsControls/FormsControls.tsx';
+import { Formik, Form, Field, FormikProps } from 'formik';
+import { MessageTextArea } from '../Common/FormsControls/FormsControls';
 import { basicMessageSchema } from '../../utils/validators/validator';
+import { InitialStateType } from '../../redux/dialogs-reducer';
 
-const Dialogs = (props) => {
+type OwnPropsType = {
+  dialogsPage: InitialStateType;
+  sendMessage: (messageText: string) => void;
+};
+type MapStatePropsType = {};
+type MapDispatchPropsType = {};
+
+const Dialogs: React.FC<OwnPropsType> = (props) => {
   // debugger
 
   let state = props.dialogsPage;
@@ -24,7 +32,7 @@ const Dialogs = (props) => {
     />
   ));
 
-  let onSendMessageClick = (newMessageBody) => {
+  let onSendMessageClick = (newMessageBody: string) => {
     // debugger
     props.sendMessage(newMessageBody);
   };
@@ -36,15 +44,35 @@ const Dialogs = (props) => {
         <div className={s.dialogsItems}>{dialogsElements}</div>
         <div className={s.messages}>
           {messagesElements}
-          <AddMessageForm onSendMessageClick={onSendMessageClick} />
+          {/* <AddMessageForm onSendMessageClick={onSendMessageClick} /> */}
         </div>
       </div>
     </div>
   );
 };
 
-const AddMessageForm = (props) => {
-  const submit = (values, { setSubmitting, resetForm }) => {
+type SubmitType = {
+  values: FormValuesType;
+  obj: ObjValuesType;
+};
+
+type FormValuesType = {
+  newMessageBody: string;
+};
+
+type ObjValuesType = {
+  setSubmitting: (b: boolean) => void;
+  resetForm: () => void;
+};
+
+type OtherPropsType = {
+  onSendMessageClick: (newMessageBody: string) => void;
+};
+
+type AddMessageFormType = OtherPropsType & FormikProps<FormValuesType>;
+
+const AddMessageForm: React.FC<AddMessageFormType> = (props) => {
+  const submit = (values: FormValuesType, { setSubmitting, resetForm }: ObjValuesType) => {
     // debugger
     // console.log(values.newMessageBody);
     props.onSendMessageClick(values.newMessageBody);

@@ -124,7 +124,7 @@ export const updateStatus = (status: string): ThunkType => async (dispatch: Disp
     dispatch(actions.setStatus(status));
   }
 };
-export const savePhoto = (file: any): ThunkType => async (dispatch: DispatchType) => {
+export const savePhoto = (file: File): ThunkType => async (dispatch: DispatchType) => {
   let response = await profileAPI.savePhoto(file);
 
   if (response.resultCode === 0) {
@@ -136,11 +136,15 @@ export const saveProfile = (profile: ProfileType): ThunkType => async (
   dispatch,
   getState: GetStateType,
 ) => {
-  const userId = getState().auth.userId as number;
+  const userId = getState().auth.userId;
   let response = await profileAPI.saveProfile(profile);
   // debugger
   if (response.resultCode === 0) {
-    dispatch(getUserProfile(userId));
+    if (userId) {
+      dispatch(getUserProfile(userId));
+    } else {
+      throw new Error('UserId can`t be null');
+    }
   }
 };
 
