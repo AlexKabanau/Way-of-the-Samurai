@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
@@ -7,14 +7,29 @@ import { MessageTextArea } from '../Common/FormsControls/FormsControls';
 import { basicMessageSchema } from '../../utils/validators/validator';
 import { InitialStateType } from '../../redux/dialogs-reducer';
 
+type PropsType = {
+  dialogsPage: InitialStateType;
+  sendMessage: (messageText: string) => void;
+};
 type OwnPropsType = {
   dialogsPage: InitialStateType;
   sendMessage: (messageText: string) => void;
 };
-type MapStatePropsType = {};
-type MapDispatchPropsType = {};
+type MapStateToPropsType = {
+  captchaUrl: string | null;
+  isAuth: boolean;
+};
+type MapDispatchToPropsType = {
+  sendMessage: (newMessageBody: string) => void;
+  login: (email: string, password: string, rememberMe: boolean, antiBotSymbols: string) => void;
+  captchaUrl: string;
+  isAuth: boolean;
+};
+type InitialStateFormikType = {
+  newMessageBody: string;
+};
 
-const Dialogs: React.FC<OwnPropsType> = (props) => {
+const Dialogs: FC<PropsType> = (props) => {
   // debugger
 
   let state = props.dialogsPage;
@@ -44,6 +59,7 @@ const Dialogs: React.FC<OwnPropsType> = (props) => {
         <div className={s.dialogsItems}>{dialogsElements}</div>
         <div className={s.messages}>
           {messagesElements}
+          <AddMessageForm {...props} />
           {/* <AddMessageForm onSendMessageClick={onSendMessageClick} /> */}
         </div>
       </div>
@@ -51,9 +67,9 @@ const Dialogs: React.FC<OwnPropsType> = (props) => {
   );
 };
 
-type SubmitType = {
-  values: FormValuesType;
-  obj: ObjValuesType;
+type SetSubmitTypeStatus = {
+  setSubmitting: (param: boolean) => void;
+  resetForm: () => void;
 };
 
 type FormValuesType = {
@@ -69,13 +85,18 @@ type OtherPropsType = {
   onSendMessageClick: (newMessageBody: string) => void;
 };
 
-type AddMessageFormType = OtherPropsType & FormikProps<FormValuesType>;
+type AddMessageFormType = {
+  sendMessage: (newMessageBody: string) => void;
+};
 
-const AddMessageForm: React.FC<AddMessageFormType> = (props) => {
-  const submit = (values: FormValuesType, { setSubmitting, resetForm }: ObjValuesType) => {
+const AddMessageForm: FC<AddMessageFormType> = (props) => {
+  const submit = (
+    values: InitialStateFormikType,
+    { setSubmitting, resetForm }: SetSubmitTypeStatus,
+  ) => {
     // debugger
     // console.log(values.newMessageBody);
-    props.onSendMessageClick(values.newMessageBody);
+    props.sendMessage(values.newMessageBody);
     resetForm();
     setSubmitting(false);
   };

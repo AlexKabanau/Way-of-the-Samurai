@@ -42,7 +42,7 @@ type SetSubmitTypeStatus = {
 const LoginForm: FC<MapDispatchToPropsType> = (props) => {
   debugger;
   const submit = (values: InitialStateFormikType, { setSubmitting }: SetSubmitTypeStatus) => {
-    console.log(values);
+    // console.log(values);
     props.login(values.email, values.password, values.rememberMe, values.antiBotSymbols);
     setSubmitting(false);
   };
