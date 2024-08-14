@@ -15,6 +15,7 @@ import {
 } from '../../redux/users-selectors';
 import { UserType } from '../../types/types';
 import { AppStateType } from '../../redux/redux-store';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 type MapStatePropsType = {
   currentPage: number;
@@ -97,7 +98,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 // }
 
 export default compose(
-  // withAuthRedirect,
+  withAuthRedirect,
   connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
     follow,
     unfollow,
