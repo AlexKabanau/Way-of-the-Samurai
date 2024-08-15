@@ -36,7 +36,7 @@ type MapDispatchPropsType = {
 };
 
 type OwnPropsType = {
-  pageTitle: string;
+  // pageTitle: string;
 };
 
 type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
@@ -55,7 +55,7 @@ class UsersContainer extends React.Component<PropsType> {
   render() {
     return (
       <>
-        <h2>{this.props.pageTitle}</h2>
+        {/* <h2>{this.props.pageTitle}</h2> */}
         {this.props.isFetching ? (
           <Preloader />
         ) : (
@@ -97,7 +97,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 //   }
 // }
 
-export default compose(
+export default compose<React.ComponentType>(
   withAuthRedirect,
   connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
     follow,
