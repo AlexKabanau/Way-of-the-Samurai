@@ -1,12 +1,16 @@
 import { Formik, Form, Field } from 'formik';
-import React from 'react';
+import React, { FC } from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 // import { requiredField, maxLength30 } from "../../../utils/validators/validator";
 import { basicPostSchema } from '../../../utils/validators/validator';
-import { PostTextArea } from '../../Common/FormsControls/FormsControls.tsx';
-
-const MyPosts = React.memo((props) => {
+import { PostTextArea } from '../../Common/FormsControls/FormsControls';
+import { PostType } from '../../../types/types';
+type PropsType = {
+  posts: Array<PostType>;
+  addPost: (newPostText: string) => void;
+};
+const MyPosts: FC<PropsType> = (props) => {
   let postsElements = props.posts.map((post) => (
     <Post
       name={post.name}
@@ -17,7 +21,7 @@ const MyPosts = React.memo((props) => {
     />
   ));
 
-  let onAddPost = (newPostText) => {
+  let onAddPost = (newPostText: string) => {
     props.addPost(newPostText);
   };
 
@@ -28,10 +32,27 @@ const MyPosts = React.memo((props) => {
       <div className={s.posts}>{postsElements}</div>
     </div>
   );
-});
+};
 
-const AddPostForm = (props) => {
-  const submit = (values, { setSubmitting, resetForm }) => {
+const MyPostMemorized = React.memo(MyPosts);
+
+type AddPostFormType = {
+  onAddPost: (newMessageBody: string) => void;
+};
+
+type InitialStateFormikType = {
+  newPostText: string;
+};
+type SetSubmitTypeStatus = {
+  setSubmitting: (param: boolean) => void;
+  resetForm: () => void;
+};
+
+const AddPostForm: FC<AddPostFormType> = (props) => {
+  const submit = (
+    values: InitialStateFormikType,
+    { setSubmitting, resetForm }: SetSubmitTypeStatus,
+  ) => {
     props.onAddPost(values.newPostText);
     // console.log(props)
     resetForm();
@@ -69,4 +90,4 @@ const AddPostForm = (props) => {
   );
 };
 
-export default MyPosts;
+export default MyPostMemorized;
