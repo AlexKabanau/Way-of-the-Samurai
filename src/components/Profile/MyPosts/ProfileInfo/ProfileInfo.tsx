@@ -29,14 +29,14 @@ const ProfileInfo: FC<PropsType> = ({
   if (!profile) {
     return <Preloader />;
   }
-
-  const onMainPhotoSelected = (element: ChangeEvent<HTMLInputElement>) => {
-    // debugger
-    if (element.target.files?.length) {
-      savePhoto(element.target.files[0]);
-    }
-  };
-
+  /////////////////////////////////////////////////////////////
+  // const onMainPhotoSelected = (element: ChangeEvent<HTMLInputElement>) => {
+  //   // debugger
+  //   if (element.target.files?.length) {
+  //     savePhoto(element.target.files[0]);
+  //   }
+  // };
+  //////////////////////////////////////////////////////////////
   // const onSubmit = (formData) => {
   //   debugger
   //   console.log(formData)
@@ -58,7 +58,8 @@ const ProfileInfo: FC<PropsType> = ({
       </div>
       <div className={s.descriptionBlock}>
         <img src={profile.photos.large || userPhoto} alt="" className={s.userPhoto} />
-        {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
+        {/* {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />} */}
+        {isOwner && <input type={'file'} />}
 
         {editMode ? (
           <ProfileDataForm profile={profile} saveProfile={saveProfile} setEditMode={setEditMode} />

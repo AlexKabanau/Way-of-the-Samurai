@@ -1,26 +1,41 @@
-import React from "react"
+import React, { FC } from 'react';
 import { Formik, Form, Field } from 'formik';
 // import { Contact } from "./ProfileInfo";
-import s from "./ProfileInfo.module.css"
+import s from './ProfileInfo.module.css';
+import { ProfileType } from '../../../../types/types';
+import { GetStringKeys } from '../../../Common/FormsControls/FormsControls';
 
-const ProfileDataForm = ({ profile, saveProfile, setEditMode }) => {
-  const onSubmit = (formData) => {
+type PropsType = {
+  profile: ProfileType;
+  saveProfile: (profile: ProfileType) => Promise<void>;
+  setEditMode: (param: boolean) => void;
+};
+type ProfileTypeKeys = GetStringKeys<ProfileType>;
+
+type InitialStateFormikType = {
+  profile: ProfileType;
+};
+
+type SetSubmitTypeStatus = {
+  setEditMode: (param: boolean) => void;
+  resetForm: () => void;
+};
+
+const ProfileDataForm: FC<PropsType> = (props) => {
+  const submit = (
+    values: InitialStateFormikType,
+    { setEditMode, resetForm }: SetSubmitTypeStatus,
+  ) => {
     // debugger
     // console.log(formData)
 
-    saveProfile(formData).then(
-      () => {
-        // debugger
-        setEditMode(false)
-      }
-    )
-  }
+    props.saveProfile(values.profile).then(() => {
+      // debugger
+      setEditMode(false);
+    });
+  };
   return (
-
-    <Formik
-      initialValues={{ profile }}
-    onSubmit={onSubmit}
-    >
+    <Formik initialValues={profile} onSubmit={submit}>
       {({ isSubmitting }) => (
         <Form>
           <div>
@@ -29,42 +44,50 @@ const ProfileDataForm = ({ profile, saveProfile, setEditMode }) => {
             </button>
           </div>
           <div>
-            <label for="fullName"><b>Full Name: </b></label>
+            <label htmlFor="fullName">
+              <b>Full Name: </b>
+            </label>
             <Field type="text" name="fullName" />
             {/* <ErrorMessage name="fullName" component="div" /> */}
           </div>
           <div>
-            <Field type={"checkbox"} name="lookingForAJob" />Looking for a job
+            <Field type={'checkbox'} name="lookingForAJob" />
+            Looking for a job
           </div>
           <div>
-            <label for="lookingForAJobDescription"><b>My professinal skills: </b></label>
-            <Field name="lookingForAJobDescription"
-              as='textarea'
+            <label htmlFor="lookingForAJobDescription">
+              <b>My professinal skills: </b>
+            </label>
+            <Field
+              name="lookingForAJobDescription"
+              as="textarea"
               placeholder="Enter your skills"
               required
             />
           </div>
           <div>
-            <label for="aboutMe"><b>About Me: </b></label>
-            <Field name="aboutMe"
-              as='textarea'
-              placeholder="About Me"
-              required
-            />
+            <label htmlFor="aboutMe">
+              <b>About Me: </b>
+            </label>
+            <Field name="aboutMe" as="textarea" placeholder="About Me" required />
           </div>
           <div>
-            <b>Contacts:</b> {Object.keys(profile.contacts).map(key => {
-              return <div key={key} className={s.contact}>
-                <label for={`contacts.` + key}><b>{key}</b>:</label>
-                <Field type="text" name={`contacts.` + key} />
-              </div>
+            <b>Contacts:</b>{' '}
+            {Object.keys(profile.contacts).map((key) => {
+              return (
+                <div key={key} className={s.contact}>
+                  <label htmlFor={`contacts.` + key}>
+                    <b>{key}</b>:
+                  </label>
+                  <Field type="text" name={`contacts.` + key} />
+                </div>
+              );
             })}
           </div>
         </Form>
       )}
     </Formik>
+  );
+};
 
-  )
-}
-
-export default ProfileDataForm
+export default ProfileDataForm;

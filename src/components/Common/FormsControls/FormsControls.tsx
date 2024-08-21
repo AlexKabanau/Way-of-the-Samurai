@@ -33,3 +33,5 @@ export const MessageTextArea: FC<MessageTextAreaPropsType> = (props) => {
     </div>
   );
 };
+
+export type GetStringKeys<T> = Extract<keyof T, string>;
