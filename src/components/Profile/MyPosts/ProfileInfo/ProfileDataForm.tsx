@@ -35,7 +35,16 @@ const ProfileDataForm: FC<PropsType> = (props) => {
     });
   };
   return (
-    <Formik initialValues={profile} onSubmit={submit}>
+    <Formik
+      initialValues={{
+        userId: '29275',
+        lookingForAJob: true,
+        lookingForAJobDescription: 'string',
+        fullName: 'string',
+        aboutMe: 'string',
+      }}
+      onSubmit={submit}
+    >
       {({ isSubmitting }) => (
         <Form>
           <div>

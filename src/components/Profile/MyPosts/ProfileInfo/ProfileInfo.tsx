@@ -13,7 +13,7 @@ type PropsType = {
   updateStatus: (status: string) => void;
   isOwner: boolean;
   savePhoto: (file: File) => void;
-  saveProfile: (profile: ProfileType) => void;
+  saveProfile: (profile: ProfileType) => Promise<void>;
 };
 
 const ProfileInfo: FC<PropsType> = ({
@@ -30,12 +30,12 @@ const ProfileInfo: FC<PropsType> = ({
     return <Preloader />;
   }
   /////////////////////////////////////////////////////////////
-  // const onMainPhotoSelected = (element: ChangeEvent<HTMLInputElement>) => {
-  //   // debugger
-  //   if (element.target.files?.length) {
-  //     savePhoto(element.target.files[0]);
-  //   }
-  // };
+  const onMainPhotoSelected = (element: ChangeEvent<HTMLInputElement>) => {
+    // debugger
+    if (element.target.files && element.target.files.length) {
+      savePhoto(element.target.files[0]);
+    }
+  };
   //////////////////////////////////////////////////////////////
   // const onSubmit = (formData) => {
   //   debugger

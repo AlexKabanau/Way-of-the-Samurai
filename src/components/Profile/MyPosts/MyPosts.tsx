@@ -6,11 +6,15 @@ import Post from './Post/Post';
 import { basicPostSchema } from '../../../utils/validators/validator';
 import { PostTextArea } from '../../Common/FormsControls/FormsControls';
 import { PostType } from '../../../types/types';
-type PropsType = {
+
+export type MapPropsType = {
   posts: Array<PostType>;
+};
+export type DispatchPropsType = {
   addPost: (newPostText: string) => void;
 };
-const MyPosts: FC<PropsType> = (props) => {
+
+const MyPosts: FC<MapPropsType & DispatchPropsType> = (props) => {
   let postsElements = props.posts.map((post) => (
     <Post
       name={post.name}
