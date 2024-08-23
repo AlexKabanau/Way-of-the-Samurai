@@ -4,10 +4,11 @@ import { Formik, Form, Field } from 'formik';
 import s from './ProfileInfo.module.css';
 import { ProfileType } from '../../../../types/types';
 import { GetStringKeys } from '../../../Common/FormsControls/FormsControls';
+import { basicMessageSchema } from '../../../../utils/validators/validator';
 
 type PropsType = {
   profile: ProfileType;
-  saveProfile: (profile: ProfileType) => Promise<void>;
+  saveProfile: (profile: ProfileType) => void;
   setEditMode: (param: boolean) => void;
 };
 type ProfileTypeKeys = GetStringKeys<ProfileType>;
@@ -29,21 +30,18 @@ const ProfileDataForm: FC<PropsType> = (props) => {
     // debugger
     // console.log(formData)
 
-    props.saveProfile(values.profile).then(() => {
-      // debugger
-      setEditMode(false);
-    });
+    props.saveProfile(values.profile);
+    setEditMode(false);
+    // });
+    resetForm();
   };
   return (
     <Formik
       initialValues={{
-        userId: '29275',
-        lookingForAJob: true,
-        lookingForAJobDescription: 'string',
-        fullName: 'string',
-        aboutMe: 'string',
+        profile: props.profile,
       }}
       onSubmit={submit}
+      validationSchema={basicMessageSchema}
     >
       {({ isSubmitting }) => (
         <Form>
