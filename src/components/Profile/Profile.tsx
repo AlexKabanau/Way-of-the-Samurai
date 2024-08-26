@@ -1,14 +1,23 @@
-import React from "react";
+import React, { FC } from 'react';
 // import s from "./Profile.module.css"
-import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import ProfileInfo from './MyPosts/ProfileInfo/ProfileInfo';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
+import { ProfileType } from '../../types/types';
 // import { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
 // import { setUserProfile } from "../../redux/profile-reducer";
 
+type PropsType = {
+  isOwner: boolean;
+  profile: ProfileType | null;
+  status: string;
+  updateStatus: (status: string) => void;
+  savePhoto: (file: File) => void;
+  saveProfile: (profile: ProfileType) => Promise<void>;
+};
 
-const Profile = (props) => {
-  debugger
+const Profile: FC<PropsType> = (props) => {
+  debugger;
   // console.log(useParams())
 
   // let {userId} = useParams();
@@ -25,7 +34,6 @@ const Profile = (props) => {
   //   .then(data => setUserProfile(data))
   // }, [userId]);
 
-
   return (
     <main>
       <ProfileInfo
@@ -40,7 +48,7 @@ const Profile = (props) => {
       // store={props.store}
       />
     </main>
-  )
-}
+  );
+};
 
 export default Profile;

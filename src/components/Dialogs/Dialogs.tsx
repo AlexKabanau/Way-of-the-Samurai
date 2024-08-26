@@ -72,19 +72,6 @@ type SetSubmitTypeStatus = {
   resetForm: () => void;
 };
 
-type FormValuesType = {
-  newMessageBody: string;
-};
-
-type ObjValuesType = {
-  setSubmitting: (b: boolean) => void;
-  resetForm: () => void;
-};
-
-type OtherPropsType = {
-  onSendMessageClick: (newMessageBody: string) => void;
-};
-
 type AddMessageFormType = {
   sendMessage: (newMessageBody: string) => void;
 };

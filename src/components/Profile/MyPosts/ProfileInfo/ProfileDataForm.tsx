@@ -40,7 +40,8 @@ const ProfileDataForm: FC<PropsType> = (props) => {
       initialValues={{
         profile: props.profile,
       }}
-      onSubmit={submit}
+      // onSubmit={submit}
+      onSubmit={(values) => console.log(values)}
       validationSchema={basicMessageSchema}
     >
       {({ isSubmitting }) => (
@@ -80,7 +81,7 @@ const ProfileDataForm: FC<PropsType> = (props) => {
           </div>
           <div>
             <b>Contacts:</b>{' '}
-            {Object.keys(profile.contacts).map((key) => {
+            {Object.keys(props.profile.contacts).map((key) => {
               return (
                 <div key={key} className={s.contact}>
                   <label htmlFor={`contacts.` + key}>
