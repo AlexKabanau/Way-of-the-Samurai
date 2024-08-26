@@ -37,7 +37,7 @@ class ProfileContainer extends React.Component<PropsType> {
     if (!userId) {
       throw new Error('ID should exist');
     }
-
+    userId = 29275;
     // userId = 2;
     this.props.getUserProfile(userId);
     this.props.getStatus(userId);

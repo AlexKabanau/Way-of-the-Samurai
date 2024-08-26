@@ -8,12 +8,12 @@ import { ProfileType } from '../../types/types';
 // import { setUserProfile } from "../../redux/profile-reducer";
 
 type PropsType = {
-  isOwner: boolean;
   profile: ProfileType | null;
   status: string;
   updateStatus: (status: string) => void;
+  isOwner: boolean;
   savePhoto: (file: File) => void;
-  saveProfile: (profile: ProfileType) => Promise<void>;
+  saveProfile: (profile: ProfileType) => void;
 };
 
 const Profile: FC<PropsType> = (props) => {

@@ -13,7 +13,7 @@ type PropsType = {
   updateStatus: (status: string) => void;
   isOwner: boolean;
   savePhoto: (file: File) => void;
-  saveProfile: (profile: ProfileType) => Promise<void>;
+  saveProfile: (profile: ProfileType) => void;
 };
 
 const ProfileInfo: FC<PropsType> = ({

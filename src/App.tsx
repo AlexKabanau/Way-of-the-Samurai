@@ -22,7 +22,7 @@ import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer_copy2'));
 
 type MapPropsType = ReturnType<typeof mapStateToProps>;
 type DispatchPropsType = {
@@ -32,7 +32,7 @@ type DispatchPropsType = {
 class App extends React.Component<MapPropsType & DispatchPropsType> {
   // class App = (props) => {
   catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
-    alert('Some Error occured');
+    alert('Some Error occured 1');
   };
   componentDidMount() {
     this.props.initializeApp();
