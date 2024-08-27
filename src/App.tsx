@@ -22,7 +22,7 @@ import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer_copy2'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer_copy_2'));
 
 type MapPropsType = ReturnType<typeof mapStateToProps>;
 type DispatchPropsType = {

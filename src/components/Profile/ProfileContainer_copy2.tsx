@@ -61,27 +61,27 @@ type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
 /////////////////
 
 class ProfileContainer extends React.Component<PropsType> {
-  get getUserId() {
+  getUserId() {
     if (this.props.profile) {
       return this.props.profile.userId;
     }
-    return 29275;
+    return this.props.authorizedUserId;
   }
   // this.userId = +useParams(),
-  refreshProfile() {
-    let userId: number | null = +useParams();
+  refreshProfile(id: number) {
+    // let userId: number | null = this.getUserId();
 
-    if (!userId) {
-      // this.props.history.push;
-      userId = userId = this.props.authorizedUserId;
-      // throw new Error('ID should exist');
-    }
-    if (!userId) {
-      console.error("ID should exists in URI params or in state ('authorizedUserId')");
-    } else {
-      this.props.getProfile(userId);
-      this.props.getStatus(userId);
-    }
+    // if (!userId) {
+    //   // this.props.history.push;
+    //   userId = userId = this.props.authorizedUserId;
+    //   // throw new Error('ID should exist');
+    // }
+    // if (!userId) {
+    //   console.error("ID should exists in URI params or in state ('authorizedUserId')");
+    // } else {
+    this.props.getProfile(id);
+    this.props.getStatus(id);
+    // }
 
     // const params = useParams<{ userId: string }>();
     // userId = Number(params.userId);
@@ -93,12 +93,13 @@ class ProfileContainer extends React.Component<PropsType> {
   }
 
   componentDidMount() {
-    this.refreshProfile();
+    let { id } = useParams();
+    this.refreshProfile(Number(id));
   }
 
-  componentDidUpdate(prevProps: PropsType, prevState: PropsType) {
-    this.refreshProfile();
-  }
+  // componentDidUpdate(prevProps: PropsType, prevState: PropsType) {
+  //   this.refreshProfile();
+  // }
 
   // const [profile, getUserProfile] = useState(null);
 
