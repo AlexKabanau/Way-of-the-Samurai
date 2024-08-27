@@ -31,7 +31,7 @@ export type ProfileType = {
 export type UserType = {
   id: number;
   name: string;
-  status: null;
+  status: string | null;
   photos: PhotosType;
   followed: boolean;
 };
