@@ -23,6 +23,9 @@ let initialState = {
   currentPage: 1,
   isFetching: true,
   followingInProgress: [] as Array<number>, // array of UsersId
+  filter: {
+    term: '',
+  },
 };
 type ActionsTypes = InferActionsTypes<typeof actions>;
 // | FollowSuccessActionType
@@ -59,6 +62,12 @@ export const actions = {
     return {
       type: 'SET_CURRENT_PAGE',
       currentPage: currentPage,
+    } as const;
+  },
+  setFilter: (term: string) => {
+    return {
+      type: 'SET_FILTER',
+      payload: { term },
     } as const;
   },
 
@@ -118,6 +127,9 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
     case 'SET_CURRENT_PAGE': {
       return { ...state, currentPage: action.currentPage };
     }
+    case 'SET_FILTER': {
+      return { ...state, filter: action.payload };
+    }
     case 'SET_TOTAL_USERS_COUNT': {
       return { ...state, totalUsersCount: action.count };
     }
@@ -176,7 +188,7 @@ type GetStateType = () => AppStateType;
 type DispatchType = Dispatch<ActionsTypes>;
 type ThunkType = BaseThunkType<ActionsTypes>;
 
-export const requestUsers = (page: number, pageSize: number): ThunkType => {
+export const requestUsers = (page: number, pageSize: number, term: string): ThunkType => {
   return async (dispatch: DispatchType, getState: GetStateType) => {
     dispatch(actions.toggleIsFetching(true));
     dispatch(actions.setCurrentPage(page));
