@@ -15,6 +15,7 @@ import { APIResponseType } from '../components/API/api';
 // const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 export type InitialStateType = typeof initialState;
+export type FilterType = typeof initialState.filter;
 
 let initialState = {
   users: [] as Array<UserType>,
@@ -22,9 +23,10 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
-  followingInProgress: [] as Array<number>, // array of UsersId
+  followingInProgress: [] as Array<number>, //array of users ids,
   filter: {
     term: '',
+    friend: null as null | boolean,
   },
 };
 type ActionsTypes = InferActionsTypes<typeof actions>;
@@ -64,10 +66,10 @@ export const actions = {
       currentPage: currentPage,
     } as const;
   },
-  setFilter: (term: string) => {
+  setFilter: (filter: FilterType) => {
     return {
       type: 'SET_FILTER',
-      payload: { term },
+      payload: filter,
     } as const;
   },
 
@@ -188,12 +190,13 @@ type GetStateType = () => AppStateType;
 type DispatchType = Dispatch<ActionsTypes>;
 type ThunkType = BaseThunkType<ActionsTypes>;
 
-export const requestUsers = (page: number, pageSize: number, term: string): ThunkType => {
+export const requestUsers = (page: number, pageSize: number, filter: FilterType): ThunkType => {
   return async (dispatch: DispatchType, getState: GetStateType) => {
     dispatch(actions.toggleIsFetching(true));
     dispatch(actions.setCurrentPage(page));
+    dispatch(actions.setFilter(filter));
 
-    let data = await usersAPI.getUsers(page, pageSize);
+    let data = await usersAPI.getUsers(page, pageSize, filter.term, filter.friend);
 
     dispatch(actions.toggleIsFetching(false));
     // dispatch(setCurrentPage(page));

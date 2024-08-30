@@ -41,7 +41,7 @@ const authReducer = (state = initialState, action: ActionsTypes): InitialStateTy
   switch (action.type) {
     case 'sn/auth/SET_USER_DATA':
     case 'sn/auth/GET_CAPTCH_URL_SECCESS': {
-      debugger;
+      // debugger;
       return {
         ...state,
         ...action.payload,
