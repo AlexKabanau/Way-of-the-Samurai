@@ -3,7 +3,7 @@ import React, { FC, Suspense } from 'react';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 // import Profile from './components/Profile/Profile';
-import UsersContainer from './components/Users/UsersContainer';
+import { UsersPage } from './components/Users/UsersContainer';
 
 import './App.css';
 import News from './components/News/News';
@@ -61,8 +61,8 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
               <Route path="/news" element={<News />} />
               <Route path="/music" element={<Music />} />
               <Route path="/settings" element={<Settings />} />
-              <Route path="/users" element={<UsersContainer />} />
-              {/* <Route path="/users" element={<UsersContainer pageTitle="PageTitle" />} /> */}
+              {/* <Route path="/users" element={<UsersPage />} /> */}
+              <Route path="/users" element={<UsersPage pageTitle="PageTitle" />} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<div>404 NOT FOUND</div>} />
             </Routes>

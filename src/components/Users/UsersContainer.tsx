@@ -1,7 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { FC } from 'react';
+import { connect, useSelector } from 'react-redux';
 import { actions, follow, unfollow, requestUsers, FilterType } from '../../redux/users-reducer';
-import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
 // import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from 'redux';
@@ -17,85 +16,115 @@ import {
 import { UserType } from '../../types/types';
 import { AppStateType } from '../../redux/redux-store';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { Users } from './Users';
 
-type MapStatePropsType = {
-  currentPage: number;
-  pageSize: number;
-  isFetching: boolean;
-  totalUsersCount: number;
-  filter: FilterType;
+// type MapStatePropsType = {
+//   currentPage: number;
+//   pageSize: number;
+//   isFetching: boolean;
+//   totalUsersCount: number;
+//   filter: FilterType;
 
-  users: Array<UserType>;
-  followingInProgress: Array<number>;
+//   users: Array<UserType>;
+//   followingInProgress: Array<number>;
+// };
+
+// type MapDispatchPropsType = {
+//   getUsers: (currentPage: number, pageSize: number, filter: FilterType) => void;
+//   unfollow: (userId: number) => void;
+//   follow: (userId: number) => void;
+//   // setCurrentPage: (currentPage: number) => void;
+//   // toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void;
+// };
+
+// type OwnPropsType = {
+//   pageTitle: string;
+// };
+
+// type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
+
+type UsersPagePropsType = {
+  pageTitle: string;
 };
 
-type MapDispatchPropsType = {
-  getUsers: (currentPage: number, pageSize: number, filter: FilterType) => void;
-  unfollow: (userId: number) => void;
-  follow: (userId: number) => void;
-  // setCurrentPage: (currentPage: number) => void;
-  // toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void;
+export const UsersPage: FC<UsersPagePropsType> = (props) => {
+  const isFetching = useSelector(getIsFetching);
+
+  return (
+    <>
+      <h2>{props.pageTitle}</h2>
+      {isFetching ? (
+        <Preloader />
+      ) : (
+        <Users
+        // totalUsersCount={this.props.totalUsersCount}
+        // pageSize={this.props.pageSize}
+        // currentPage={this.props.currentPage}
+        // onPageChanged={this.onPageChanged}
+        // onFilterChanged={this.onFilterChanged}
+        // follow={this.props.follow}
+        // unfollow={this.props.unfollow}
+        // users={this.props.users}
+        // followingInProgress={this.props.followingInProgress}
+        />
+      )}
+    </>
+  );
 };
 
-type OwnPropsType = {
-  // pageTitle: string;
-};
+// class UsersContainer extends React.Component<PropsType> {
+//   componentDidMount() {
+//     const { currentPage, pageSize, filter } = this.props;
+//     this.props.getUsers(currentPage, pageSize, filter);
+//   }
 
-type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
+//   onPageChanged = (pageNumber: number) => {
+//     const { pageSize, filter } = this.props;
+//     this.props.getUsers(pageNumber, pageSize, filter);
+//   };
 
-class UsersContainer extends React.Component<PropsType> {
-  componentDidMount() {
-    const { currentPage, pageSize, filter } = this.props;
-    this.props.getUsers(currentPage, pageSize, filter);
-  }
+//   onFilterChanged = (filter: FilterType) => {
+//     const { pageSize } = this.props;
 
-  onPageChanged = (pageNumber: number) => {
-    const { pageSize, filter } = this.props;
-    this.props.getUsers(pageNumber, pageSize, filter);
-  };
+//     this.props.getUsers(1, pageSize, filter);
+//   };
 
-  onFilterChanged = (filter: FilterType) => {
-    const { pageSize } = this.props;
+//   render() {
+//     return (
+//       <>
+//         {/* <h2>{this.props.pageTitle}</h2> */}
+//         {this.props.isFetching ? (
+//           <Preloader />
+//         ) : (
+//           <Users
+//           // totalUsersCount={this.props.totalUsersCount}
+//           // pageSize={this.props.pageSize}
+//           // currentPage={this.props.currentPage}
+//           // onPageChanged={this.onPageChanged}
+//           // onFilterChanged={this.onFilterChanged}
+//           // follow={this.props.follow}
+//           // unfollow={this.props.unfollow}
+//           // users={this.props.users}
+//           // followingInProgress={this.props.followingInProgress}
+//           />
+//         )}
+//       </>
+//     );
+//   }
+// }
 
-    this.props.getUsers(1, pageSize, filter);
-  };
-
-  render() {
-    return (
-      <>
-        {/* <h2>{this.props.pageTitle}</h2> */}
-        {this.props.isFetching ? (
-          <Preloader />
-        ) : (
-          <Users
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            currentPage={this.props.currentPage}
-            onPageChanged={this.onPageChanged}
-            onFilterChanged={this.onFilterChanged}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-            users={this.props.users}
-            followingInProgress={this.props.followingInProgress}
-          />
-        )}
-      </>
-    );
-  }
-}
-
-let mapStateToProps = (state: AppStateType): MapStatePropsType => {
-  return {
-    // users: getUsersSuperSelector(state),
-    users: getUsers(state),
-    pageSize: getPageSize(state),
-    totalUsersCount: getTotalUsersCount(state),
-    currentPage: getCurrentPage(state),
-    isFetching: getIsFetching(state),
-    followingInProgress: getFollowingInProgress(state),
-    filter: getUsersFilter(state),
-  };
-};
+// let mapStateToProps = (state: AppStateType): MapStatePropsType => {
+//   return {
+//     // users: getUsersSuperSelector(state),
+//     users: getUsers(state),
+//     pageSize: getPageSize(state),
+//     totalUsersCount: getTotalUsersCount(state),
+//     currentPage: getCurrentPage(state),
+//     isFetching: getIsFetching(state),
+//     followingInProgress: getFollowingInProgress(state),
+//     filter: getUsersFilter(state),
+//   };
+// };
 // let mapStateToProps = (state) => {
 //   return {
 //     users: state.usersPage.users,
@@ -107,13 +136,13 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 //   }
 // }
 
-export default compose<React.ComponentType>(
-  withAuthRedirect,
-  connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
-    follow,
-    unfollow,
-    // toggleIsFollowingProgress: actions.toggleIsFollowingProgress,
-    // setCurrentPage: actions.setCurrentPage,
-    getUsers: requestUsers,
-  }),
-)(UsersContainer);
+// export default compose<React.ComponentType>(
+//   withAuthRedirect,
+//   connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
+//     follow,
+//     unfollow,
+//     // toggleIsFollowingProgress: actions.toggleIsFollowingProgress,
+//     // setCurrentPage: actions.setCurrentPage,
+//     getUsers: requestUsers,
+//   }),
+// )(UsersContainer);

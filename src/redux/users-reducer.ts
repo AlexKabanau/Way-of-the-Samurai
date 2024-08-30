@@ -187,7 +187,7 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
 // };
 
 type GetStateType = () => AppStateType;
-type DispatchType = Dispatch<ActionsTypes>;
+export type DispatchType = Dispatch<ActionsTypes>;
 type ThunkType = BaseThunkType<ActionsTypes>;
 
 export const requestUsers = (page: number, pageSize: number, filter: FilterType): ThunkType => {
