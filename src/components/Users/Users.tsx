@@ -14,7 +14,9 @@ import {
   // ActionsTypes,
   // DispatchType,
   FilterType,
+  follow,
   requestUsers,
+  unfollow,
 } from '../../redux/users-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -52,10 +54,10 @@ export const Users: FC<PropsType> = (props) => {
   const onFilterChanged = (filter: FilterType) => {
     dispatch(requestUsers(1, pageSize, filter));
   };
-  const follow = (userId: number) => {
+  const followUser = (userId: number) => {
     dispatch(follow(userId));
   };
-  const unfollow = (userId: number) => {
+  const unfollowUser = (userId: number) => {
     dispatch(unfollow(userId));
   };
   debugger;
@@ -74,8 +76,8 @@ export const Users: FC<PropsType> = (props) => {
           key={user.id}
           user={user}
           followingInProgress={followingInProgress}
-          unfollow={unfollow}
-          follow={follow}
+          unfollow={unfollowUser}
+          follow={followUser}
         />
       ))}
     </div>
