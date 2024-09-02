@@ -29,7 +29,7 @@ let initialState = {
     friend: null as null | boolean,
   },
 };
-type ActionsTypes = InferActionsTypes<typeof actions>;
+export type ActionsTypes = InferActionsTypes<typeof actions>;
 // | FollowSuccessActionType
 // | UnfollowSuccessActionType
 // | SetUsersActionType
@@ -195,7 +195,7 @@ export const requestUsers = (page: number, pageSize: number, filter: FilterType)
     dispatch(actions.toggleIsFetching(true));
     dispatch(actions.setCurrentPage(page));
     dispatch(actions.setFilter(filter));
-
+    debugger;
     let data = await usersAPI.getUsers(page, pageSize, filter.term, filter.friend);
 
     dispatch(actions.toggleIsFetching(false));

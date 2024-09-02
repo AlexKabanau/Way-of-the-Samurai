@@ -15,7 +15,7 @@ type UserRenderType = {
   follow: (userId: number) => void;
 };
 
-let User: FC<UserRenderType> = ({ user, followingInProgress, unfollow, follow, ...props }) => {
+const User: FC<UserRenderType> = ({ user, followingInProgress, unfollow, follow, ...props }) => {
   return (
     <div>
       <span>

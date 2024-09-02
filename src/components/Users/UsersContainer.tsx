@@ -1,21 +1,21 @@
 import React, { FC } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { actions, follow, unfollow, requestUsers, FilterType } from '../../redux/users-reducer';
+// import { actions, follow, unfollow, requestUsers, FilterType } from '../../redux/users-reducer';
 import Preloader from '../Common/Preloader/Preloader';
 // import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { compose } from 'redux';
+// import { compose } from 'redux';
 import {
-  getCurrentPage,
-  getFollowingInProgress,
+  // getCurrentPage,
+  // getFollowingInProgress,
   getIsFetching,
-  getPageSize,
-  getTotalUsersCount,
-  getUsers,
-  getUsersFilter,
+  // getPageSize,
+  // getTotalUsersCount,
+  // getUsers,
+  // getUsersFilter,
 } from '../../redux/users-selectors';
-import { UserType } from '../../types/types';
-import { AppStateType } from '../../redux/redux-store';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+// import { UserType } from '../../types/types';
+// import { AppStateType } from '../../redux/redux-store';
+// import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { Users } from './Users';
 
 // type MapStatePropsType = {
@@ -49,25 +49,23 @@ type UsersPagePropsType = {
 
 export const UsersPage: FC<UsersPagePropsType> = (props) => {
   const isFetching = useSelector(getIsFetching);
+  debugger;
 
   return (
     <>
       <h2>{props.pageTitle}</h2>
-      {isFetching ? (
-        <Preloader />
-      ) : (
-        <Users
-        // totalUsersCount={this.props.totalUsersCount}
-        // pageSize={this.props.pageSize}
-        // currentPage={this.props.currentPage}
-        // onPageChanged={this.onPageChanged}
-        // onFilterChanged={this.onFilterChanged}
-        // follow={this.props.follow}
-        // unfollow={this.props.unfollow}
-        // users={this.props.users}
-        // followingInProgress={this.props.followingInProgress}
-        />
-      )}
+      {isFetching ? <Preloader /> : null}
+      <Users
+      // totalUsersCount={this.props.totalUsersCount}
+      // pageSize={this.props.pageSize}
+      // currentPage={this.props.currentPage}
+      // onPageChanged={this.onPageChanged}
+      // onFilterChanged={this.onFilterChanged}
+      // follow={this.props.follow}
+      // unfollow={this.props.unfollow}
+      // users={this.props.users}
+      // followingInProgress={this.props.followingInProgress}
+      />
     </>
   );
 };

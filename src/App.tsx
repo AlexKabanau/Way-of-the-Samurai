@@ -62,7 +62,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
               <Route path="/music" element={<Music />} />
               <Route path="/settings" element={<Settings />} />
               {/* <Route path="/users" element={<UsersPage />} /> */}
-              <Route path="/users" element={<UsersPage pageTitle="PageTitle" />} />
+              <Route path="/users" element={<UsersPage pageTitle="Самураи" />} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<div>404 NOT FOUND</div>} />
             </Routes>
