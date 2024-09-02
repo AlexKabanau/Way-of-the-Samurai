@@ -11,7 +11,7 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Setting';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 // import ProfileContainer from './components/Profile/ProfileContainer';
-import Login from './components/Login/Login';
+import { LoginPage } from './components/Login/Login';
 // import { getAuthUserData } from './redux/auth-reducer';
 import { connect } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
@@ -63,7 +63,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
               <Route path="/settings" element={<Settings />} />
               {/* <Route path="/users" element={<UsersPage />} /> */}
               <Route path="/users" element={<UsersPage pageTitle="Самураи" />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="*" element={<div>404 NOT FOUND</div>} />
             </Routes>
           </Suspense>

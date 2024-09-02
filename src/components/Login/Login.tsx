@@ -1,20 +1,21 @@
 import React, { FC } from 'react';
 // import { reduxForm } from "redux-form";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth-reducer';
 import { Navigate } from 'react-router-dom';
-import { AppStateType } from '../../redux/redux-store';
+import { AppDispatch, AppStateType } from '../../redux/redux-store';
+import state from '../../state';
 
-type MapStateToPropsType = {
-  captchaUrl: string | null;
-  isAuth: boolean;
-};
-type MapDispatchToPropsType = {
-  login: (email: string, password: string, rememberMe: boolean, antiBotSymbols: string) => void;
-  captchaUrl: string;
-  isAuth: boolean;
-};
+// type MapStateToPropsType = {
+//   // captchaUrl: string | null;
+//   // isAuth: boolean;
+// };
+// type MapDispatchToPropsType = {
+//   // login: (email: string, password: string, rememberMe: boolean, antiBotSymbols: string) => void;
+//   // captchaUrl: string;
+//   // isAuth: boolean;
+// };
 type InitialStateFormikType = {
   email: string;
   password: string;
@@ -26,11 +27,11 @@ type InitialStateFormikType = {
 //   form: 'login'
 // })(LoginForm)
 
-const Login: FC<MapStateToPropsType & MapDispatchToPropsType> = (props) => {
+export const LoginPage: FC = (props) => {
   return (
     <>
       <h1>Login</h1>
-      <LoginForm {...props} />
+      <LoginForm />
     </>
   );
 };
@@ -39,16 +40,25 @@ type SetSubmitTypeStatus = {
   setSubmitting: (param: boolean) => void;
 };
 
-const LoginForm: FC<MapDispatchToPropsType> = (props) => {
-  debugger;
+const LoginForm: FC = (props) => {
+  // debugger;
+  const captchaUrl = useSelector((state: AppStateType) => state.auth.captchaUrl);
+  const isAuth = useSelector((state: AppStateType) => state.auth.isAuth);
+
+  const dispatch: AppDispatch = useDispatch();
+
+  // const login = (email, password, rememberMe, antiBotSymbols) => {
+  //   dispatch()
+  // }
+
   const submit = (values: InitialStateFormikType, { setSubmitting }: SetSubmitTypeStatus) => {
     // console.log(values);
-    props.login(values.email, values.password, values.rememberMe, values.antiBotSymbols);
+    dispatch(login(values.email, values.password, values.rememberMe, values.antiBotSymbols));
     setSubmitting(false);
   };
-  let captchaUrl = props.captchaUrl;
+  // let captchaUrl = props.captchaUrl;
 
-  if (props.isAuth) {
+  if (isAuth) {
     return <Navigate to="/profile" />;
   }
   return (
@@ -68,7 +78,7 @@ const LoginForm: FC<MapDispatchToPropsType> = (props) => {
         }
         return errors;
       }}
-      captchaUrl={props.captchaUrl}
+      captchaUrl={captchaUrl}
       onSubmit={submit}
     >
       {({ isSubmitting }) => (
@@ -107,12 +117,12 @@ const LoginForm: FC<MapDispatchToPropsType> = (props) => {
     </Formik>
   );
 };
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-  debugger;
-  return {
-    captchaUrl: state.auth.captchaUrl,
-    isAuth: state.auth.isAuth,
-  };
-};
+// const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+//   debugger;
+//   return {
+//     // captchaUrl: state.auth.captchaUrl,
+//     // isAuth: state.auth.isAuth,
+//   };
+// };
 //@ts-ignore
-export default connect(mapStateToProps, { login })(Login);
+// export default connect(null, { login })(Login);
