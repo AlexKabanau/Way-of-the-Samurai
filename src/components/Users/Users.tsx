@@ -1,4 +1,6 @@
 import React, { FC, useEffect } from 'react';
+import qs from 'qs';
+
 // import s from "./Users.module.css";
 // import userPhoto from "../../assets/images/userphoto.png"
 // import { NavLink } from "react-router-dom";
@@ -28,6 +30,8 @@ import {
   getUsersFilter,
 } from '../../redux/users-selectors';
 import { AppDispatch } from '../../redux/redux-store';
+import { useLocation, useNavigate } from 'react-router-dom';
+import QueryString from 'qs';
 // import store from '../../state';
 // import { Dispatch } from 'redux';
 
@@ -43,10 +47,35 @@ export const Users: FC<PropsType> = (props) => {
   const followingInProgress = useSelector(getFollowingInProgress);
 
   const dispatch: AppDispatch = useDispatch();
-
+  const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
-    dispatch(requestUsers(currentPage, pageSize, filter));
+    const search = location.search;
+    const parsed = qs.parse(search.substring(1)) as { term: string; page: string; friend: string };
+
+    let actualPage = currentPage;
+    if (!!parsed.page) {
+      actualPage = Number(parsed.page);
+    }
+    let actualFilter = filter;
+    if (!!parsed.term) {
+      actualFilter = { ...actualFilter, term: parsed.term as string };
+    }
+    if (!!parsed.friend) {
+      actualFilter = {
+        ...actualFilter,
+        friend: parsed.friend === 'null' ? null : parsed.friend === 'true' ? true : false,
+      };
+    }
+    // debugger;
+    debugger;
+    console.log(parsed);
+
+    dispatch(requestUsers(actualPage, pageSize, actualFilter));
   }, []);
+  useEffect(() => {
+    navigate(`/users?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`);
+  }, [filter, currentPage]);
 
   const onPageChanged = (pageNumber: number) => {
     dispatch(requestUsers(pageNumber, pageSize, filter));
@@ -60,7 +89,7 @@ export const Users: FC<PropsType> = (props) => {
   const unfollowUser = (userId: number) => {
     dispatch(unfollow(userId));
   };
-  debugger;
+  // debugger;
 
   return (
     <div>

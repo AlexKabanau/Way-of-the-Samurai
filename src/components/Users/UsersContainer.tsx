@@ -49,7 +49,7 @@ type UsersPagePropsType = {
 
 export const UsersPage: FC<UsersPagePropsType> = (props) => {
   const isFetching = useSelector(getIsFetching);
-  debugger;
+  // debugger;
 
   return (
     <>
