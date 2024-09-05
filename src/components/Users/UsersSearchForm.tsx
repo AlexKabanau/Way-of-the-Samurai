@@ -7,6 +7,7 @@ import { getUsersFilter } from '../../redux/users-selectors';
 
 type PropsType = {
   onFilterChanged: (filter: FilterType) => void;
+  // initialValue: FilterType;
 };
 type FreindFormType = 'true' | 'false' | 'null';
 type FormType = {
@@ -34,13 +35,12 @@ export const UsersSerachForm: FC<PropsType> = React.memo((props) => {
     values: FormType,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
   ) => {
+    const filter: FilterType = {
+      term: values.term,
+      friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false,
+    };
     props.onFilterChanged(filter);
     setSubmitting(false);
-    // debugger
-    // setTimeout(() => {
-    //   alert(JSON.stringify(values, null, 2));
-    //   setSubmitting(false);
-    // }, 400);
   };
 
   return (
