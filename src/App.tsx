@@ -24,6 +24,7 @@ import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/
 import type { MenuProps } from 'antd';
 import { Avatar, Breadcrumb, Layout, Menu, theme } from 'antd';
 import SubMenu from 'antd/es/menu/SubMenu';
+// import { ChatPage } from './pages/Chat/ChatPage';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -31,6 +32,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer_copy_2'));
+const ChatPage = React.lazy(() => import('./pages/Chat/ChatPage'));
 
 
 // const {
@@ -45,7 +47,7 @@ type DispatchPropsType = {
 
 class App extends React.Component<MapPropsType & DispatchPropsType> {
   catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
-    alert('Some Error occured 1');
+    alert('Some Error occured');
   };
   componentDidMount() {
     this.props.initializeApp();
@@ -68,14 +70,8 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
           <Breadcrumb.Item>List</Breadcrumb.Item>
           <Breadcrumb.Item>App</Breadcrumb.Item>
         </Breadcrumb>
-        <Layout
-          // style={{ padding: '24px 0', background: colorBgContainer, borderRadius: borderRadiusLG 
-
-          // }}
-        >
-          <Sider 
-          // style={{ background: colorBgContainer }} width={200}
-          >
+        <Layout className="site-layout-background" style={{padding: '24px 0'}}>
+        <Sider className="site-layout-background" width={200}>
             <Menu
               mode="inline"
               // defaultSelectedKeys={['1']}
@@ -99,21 +95,22 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
               <Menu.Item key='8'><Link to="/news">News</Link></Menu.Item>
               <Menu.Item key='9'><Link to="/music">Music</Link></Menu.Item>
               <Menu.Item key='10'><Link to="/settings">Settings</Link></Menu.Item>
-              <Menu.Item key='11'>Option 5</Menu.Item>
+              <Menu.Item key='11'><Link to="/chat">Chat</Link></Menu.Item>
             </Menu>
           </Sider>
           <Content style={{ padding: '0 24px', minHeight: 280 }}>
           <Routes>
-      //         <Route path="/" element={<ProfileContainer />} />
-      //         <Route path="/dialogs/*" element={<DialogsContainer />} />
-      //         <Route path="/profile/" element={<ProfileContainer />} />
-      //         <Route path="/profile/:userId" element={<ProfileContainer />} />
-      //         <Route path="/news" element={<News />} />
-      //         <Route path="/music" element={<Music />} />
-      //         <Route path="/settings" element={<Settings />} />
-      //         <Route path="/users" element={<UsersPage pageTitle="Самураи" />} />
-      //         <Route path="/login" element={<LoginPage />} />
-      //         <Route
+            <Route path="/" element={<ProfileContainer />} />
+            <Route path="/dialogs/*" element={<DialogsContainer />} />
+            <Route path="/profile/" element={<ProfileContainer />} />
+            <Route path="/profile/:userId" element={<ProfileContainer />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/music" element={<Music />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/users" element={<UsersPage pageTitle="Самураи" />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/chat" element={<ChatPage />} />
+            <Route
                 path="*"
                 element={
                   <div>
@@ -121,12 +118,12 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                   </div>
                 }
               />
-            </Routes>
-            </Content>
+          </Routes>
+        </Content>
         </Layout>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Samuray Social Network created by it-kamasutra.by
+        Samuray Social Network ©2024 created by IT-KAMASUTRA
       </Footer>
     </Layout>
     
