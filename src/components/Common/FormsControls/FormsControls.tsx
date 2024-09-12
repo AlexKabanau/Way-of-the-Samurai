@@ -11,7 +11,7 @@ type MessageTextAreaPropsType = {
 };
 
 export const PostTextArea: FC<PostTextAreaPropsType> = (props) => {
-  debugger;
+  // debugger;
   return (
     <div className={props.newPostText && s.formControl + ' ' + s.error}>
       <div>
@@ -23,7 +23,7 @@ export const PostTextArea: FC<PostTextAreaPropsType> = (props) => {
 };
 
 export const MessageTextArea: FC<MessageTextAreaPropsType> = (props) => {
-  debugger;
+  // debugger;
   return (
     <div className={props.newMessageBody && s.formControl + ' ' + s.error}>
       <div>

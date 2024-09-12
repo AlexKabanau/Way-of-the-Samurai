@@ -24,7 +24,7 @@ export const AppHeader: React.FC = (props) => {
       <div className="demo-logo" />
       <Menu theme="dark" mode="horizontal" style={{ flex: 1, minWidth: 0 }}>
         <Menu.Item key="1">
-          <Link to="/profile">Profile</Link>
+          <NavLink to="/profile">Profile</NavLink>
         </Menu.Item>
       </Menu>
       {isAuth ? (

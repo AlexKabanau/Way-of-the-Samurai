@@ -13,7 +13,7 @@ export const authAPI = {
     // .then(response => response.data)
   },
   login(email: string, password: string, rememberMe = false, captcha = null as null | string) {
-    debugger;
+    // debugger;
     return instance
       .post<APIResponseType<LoginResponseDataType, ResultCodeForCaptureEnum | ResultCodesEnum>>(
         `auth/login`,

@@ -17,7 +17,7 @@ type PropsType = {
 };
 
 const Profile: FC<PropsType> = (props) => {
-  debugger;
+  // debugger;
   // console.log(useParams())
 
   // let {userId} = useParams();

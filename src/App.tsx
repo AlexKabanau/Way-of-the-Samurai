@@ -82,20 +82,20 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
               // items={items2}
             >
               <SubMenu key='sub1' icon={<UserOutlined />} title='My Profile'>
-                <Menu.Item key='1'><Link to="/profile">Profile</Link></Menu.Item>
-                <Menu.Item key='2'><Link to="/dialogs">Dialogs</Link></Menu.Item>
+                <Menu.Item key='1'><NavLink to="/profile">Profile</NavLink></Menu.Item>
+                <Menu.Item key='2'><NavLink to="/dialogs">Dialogs</NavLink></Menu.Item>
                 <Menu.Item key='3'>Option 1</Menu.Item>
                 <Menu.Item key='4'>Option 2</Menu.Item>
               </SubMenu>
               <SubMenu key='sub2' icon={<LaptopOutlined />} title='Users'>
-                <Menu.Item key='5'><Link to="/users">Developers</Link></Menu.Item>
+                <Menu.Item key='5'><NavLink to="/users">Developers</NavLink></Menu.Item>
                 <Menu.Item key='6'>Option 3</Menu.Item>
                 <Menu.Item key='7'>Option 4</Menu.Item>
               </SubMenu>
-              <Menu.Item key='8'><Link to="/news">News</Link></Menu.Item>
-              <Menu.Item key='9'><Link to="/music">Music</Link></Menu.Item>
-              <Menu.Item key='10'><Link to="/settings">Settings</Link></Menu.Item>
-              <Menu.Item key='11'><Link to="/chat">Chat</Link></Menu.Item>
+              <Menu.Item key='8'><NavLink to="/news">News</NavLink></Menu.Item>
+              <Menu.Item key='9'><NavLink to="/music">Music</NavLink></Menu.Item>
+              <Menu.Item key='10'><NavLink to="/settings">Settings</NavLink></Menu.Item>
+              <Menu.Item key='11'><NavLink to="/chat">Chat</NavLink></Menu.Item>
             </Menu>
           </Sider>
           <Content style={{ padding: '0 24px', minHeight: 280 }}>
