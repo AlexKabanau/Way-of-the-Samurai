@@ -6,15 +6,17 @@ import { AppDispatch, AppStateType, BaseThunkType, InferActionsTypes } from './r
 import { ThunkAction } from 'redux-thunk';
 import { cahtAPI, ChatMessageAPIType, StatusType } from '../components/API/chat-api';
 import { message } from 'antd';
+import { v1 } from 'uuid';
 // import { ActionsType } from './app-reducer';
 
 // const SET_USER_DATA = 'sn/auth/SET_USER_DATA';
 // const GET_CAPTCH_URL_SECCESS = 'sn/auth/GET_CAPTCH_URL_SECCESS';
 
 export type InitialStateType = typeof initialState;
+type ChatMessageType = ChatMessageAPIType & { id: string };
 
 let initialState = {
-  messages: [] as ChatMessageAPIType[],
+  messages: [] as ChatMessageType[],
   status: 'pending' as StatusType,
 };
 
@@ -25,7 +27,9 @@ const chatReducer = (state = initialState, action: ActionsTypes): InitialStateTy
       // debugger;
       return {
         ...state,
-        messages: [...state.messages, ...action.payload.messages],
+        messages: [...state.messages, ...action.payload.messages]
+          .map((m) => ({ ...m, id: v1() }))
+          .filter((e, index, array) => index >= array.length - 100),
       };
     }
     case 'SN/chat/STATUS_CHANGED':
