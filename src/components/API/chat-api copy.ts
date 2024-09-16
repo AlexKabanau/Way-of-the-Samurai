@@ -1,26 +1,33 @@
+import { unsubscribe } from 'diagnostics_channel';
+
 const subscribers = {
-  'messages-received': [] as MessagesReceivedSubscriberType[],
+  'message-received': [] as MessagesReceivedSubscriberType[],
   'status-changed': [] as StatusChangedSubscriberType[],
 };
 
 let ws: WebSocket | null = null;
-type EventsNamesType = 'messages-received' | 'status-changed';
+type EventsNamesType = 'message-received' | 'status-changed';
 
 const closeHandler = () => {
+  // console.log('Close socket');
   notifySubscribersAboutStatus('pending');
   setTimeout(createChannel, 3000);
 };
+
 const messageHandler = (e: MessageEvent) => {
   const newMessages = JSON.parse(e.data);
-  subscribers['messages-received'].forEach((s) => s(newMessages));
+  subscribers['message-received'].forEach((s) => s(newMessages));
 };
+
 const openHandler = () => {
   notifySubscribersAboutStatus('ready');
 };
+
 const errorHandler = () => {
   notifySubscribersAboutStatus('error');
-  console.error('REFRESH PAGE');
+  console.error('RESTART PAGE');
 };
+
 const cleanUp = () => {
   if (ws) {
     ws.removeEventListener('close', closeHandler);
@@ -29,6 +36,7 @@ const cleanUp = () => {
     ws.removeEventListener('error', errorHandler);
   }
 };
+
 const notifySubscribersAboutStatus = (status: StatusType) => {
   subscribers['status-changed'].forEach((s) => s(status));
 };
@@ -36,21 +44,21 @@ const notifySubscribersAboutStatus = (status: StatusType) => {
 function createChannel() {
   cleanUp();
   if (ws) ws.close();
+
   ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx');
   notifySubscribersAboutStatus('pending');
-
   ws.addEventListener('close', closeHandler);
   ws.addEventListener('message', messageHandler);
   ws.addEventListener('open', openHandler);
   ws.addEventListener('error', errorHandler);
 }
 
-export const chatAPI = {
+export const cahtAPI = {
   start() {
     createChannel();
   },
   stop() {
-    subscribers['messages-received'] = [];
+    subscribers['message-received'] = [];
     subscribers['status-changed'] = [];
     cleanUp();
     if (ws) ws.close();
@@ -59,10 +67,10 @@ export const chatAPI = {
     eventName: EventsNamesType,
     callback: MessagesReceivedSubscriberType | StatusChangedSubscriberType,
   ) {
-    // @ts-ignore
+    //@ts-ignore
     subscribers[eventName].push(callback);
     return () => {
-      // @ts-ignore
+      //@ts-ignore
       subscribers[eventName] = subscribers[eventName].filter((s) => s !== callback);
     };
   },
@@ -70,7 +78,7 @@ export const chatAPI = {
     eventName: EventsNamesType,
     callback: MessagesReceivedSubscriberType | StatusChangedSubscriberType,
   ) {
-    // @ts-ignore
+    //@ts-ignore
     subscribers[eventName] = subscribers[eventName].filter((s) => s !== callback);
   },
   sendMessage(message: string) {
@@ -87,4 +95,5 @@ export type ChatMessageAPIType = {
   userId: number;
   userName: string;
 };
+
 export type StatusType = 'pending' | 'ready' | 'error';
